@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class RuLigaFoodServiceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(RuLigaFoodServiceApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(RuLigaFoodServiceApplication.class, args);
+    }
 
 }
