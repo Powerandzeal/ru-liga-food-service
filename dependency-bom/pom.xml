@@ -4,20 +4,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.example</groupId>
+        <groupId>ru.liga</groupId>
         <artifactId>ru-liga-food-service</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
     </parent>
 
     <artifactId>dependency-bom</artifactId>
     <packaging>pom</packaging>
 
     <properties>
-        <spring.version>2.7.15-SNAPSHOT</spring.version>
+        <spring.version>2.7.15</spring.version>
         <java.version>11</java.version>
         <maven.compiler.soure>11</maven.compiler.soure>
         <maven.compiler.target>11</maven.compiler.target>
         <maven.compiler.plugin>3.11.0</maven.compiler.plugin>
+        <snakeyaml.version>2.2</snakeyaml.version>
     </properties>
 
 
@@ -37,7 +38,15 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-actuator</artifactId>
+                <version>${spring.version}</version>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
+            <dependency>
+                <groupId>org.yaml</groupId>
+                <artifactId>snakeyaml</artifactId>
+                <version>${snakeyaml.version}</version>
+            </dependency>
+
             <!--		<dependency>-->
             <!--			<groupId>org.springframework.security</groupId>-->
             <!--			<artifactId>spring-security-test</artifactId>-->
@@ -52,12 +61,15 @@
                     <dependency>
                         <groupId>org.springframework.boot</groupId>
                         <artifactId>spring-boot-starter-amqp</artifactId>
+                        <version>${spring.version}</version>
                     </dependency>
 
 
             <!--		<dependency>-->
             <!--			<groupId>org.springframework.boot</groupId>-->
             <!--			<artifactId>spring-boot-starter-data-jpa</artifactId>-->
+            <!--            <version>${spring.version}</version>  -->
+
             <!--		</dependency>-->
             <!--		<dependency>-->
             <!--			<groupId>org.liquibase</groupId>-->
