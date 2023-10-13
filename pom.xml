@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>ru.liga</groupId>
+    <groupId>com.example</groupId>
     <artifactId>ru-liga-food-service</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <description>ru-liga-food-service</description>
@@ -22,7 +22,6 @@
         <module>notification-service</module>
         <module>order-service</module>
     </modules>
-
 
 
 </project>
