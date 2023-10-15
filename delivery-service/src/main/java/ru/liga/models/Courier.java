@@ -6,6 +6,7 @@ import ru.liga.StatusCurrier;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import
 
 @Data
 @Entity
@@ -16,6 +17,8 @@ public class Courier {
     int phoneNumber;
     String coordinates;
     StatusCurrier statusCurrier;
+    Order order;
+
 
 
 
