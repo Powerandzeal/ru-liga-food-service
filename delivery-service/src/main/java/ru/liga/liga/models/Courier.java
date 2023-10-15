@@ -1,12 +1,11 @@
-package ru.liga.models;
+package ru.liga.liga.models;
 
 import lombok.Data;
 import org.springframework.core.annotation.Order;
-import ru.liga.StatusCurrier;
+import ru.liga.liga.StatusCurrier;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import
 
 @Data
 @Entity
@@ -17,7 +16,7 @@ public class Courier {
     int phoneNumber;
     String coordinates;
     StatusCurrier statusCurrier;
-    Order order;
+//    Order order;
 
 
 

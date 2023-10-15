@@ -10,7 +10,7 @@
         <relativePath>../dependency-bom/pom.xml</relativePath>
     </parent>
 
-    <artifactId>delevery-service</artifactId>
+    <artifactId>delivery-service</artifactId>
 
     <packaging>jar</packaging>
 
