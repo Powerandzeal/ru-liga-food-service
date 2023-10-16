@@ -1,4 +1,4 @@
-package ru.liga.liga.controllers;
+package ru.liga.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
 

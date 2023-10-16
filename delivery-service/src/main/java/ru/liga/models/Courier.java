@@ -1,8 +1,7 @@
-package ru.liga.liga.models;
+package ru.liga.models;
 
 import lombok.Data;
-import org.springframework.core.annotation.Order;
-import ru.liga.liga.StatusCurrier;
+import ru.liga.StatusCurrier;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

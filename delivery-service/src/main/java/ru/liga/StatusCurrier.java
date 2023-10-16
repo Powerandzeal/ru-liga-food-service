@@ -1,4 +1,4 @@
-package ru.liga.liga;
+package ru.liga;
 
 public enum StatusCurrier {
     ORDERISTAKE,
