@@ -20,6 +20,9 @@
         <maven.compiler.plugin>3.11.0</maven.compiler.plugin>
         <snakeyaml.version>2.2</snakeyaml.version>
         <lombok.version>1.18.30</lombok.version>
+        <postgresql.version>42.6.0</postgresql.version>
+        <liquibase-core.version>4.11.0</liquibase-core.version>
+        <java.version>11</java.version>
     </properties>
 
 
@@ -50,6 +53,7 @@
             <dependency>
                 <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>
+                <version>${postgresql.version}</version>
                 <scope>runtime</scope>
             </dependency>
 
@@ -76,10 +80,11 @@
             			<artifactId>spring-boot-starter-data-jpa</artifactId>
                         <version>${spring.version}</version>
             		</dependency>
-            <!--		<dependency>-->
-            <!--			<groupId>org.liquibase</groupId>-->
-            <!--			<artifactId>liquibase-core</artifactId>-->
-            <!--		</dependency>-->
+            		<dependency>
+            			<groupId>org.liquibase</groupId>
+            			<artifactId>liquibase-core</artifactId>
+                        <version>${liquibase.version}</version>
+            		</dependency>
             		<dependency>
             			<groupId>org.mybatis.spring.boot</groupId>
             			<artifactId>mybatis-spring-boot-starter</artifactId>
