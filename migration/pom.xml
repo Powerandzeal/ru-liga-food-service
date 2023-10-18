@@ -50,7 +50,7 @@
                 <profile.dataDir>src/main/resources/db/local/data</profile.dataDir>
                 <profile.verbose>false</profile.verbose>
                 <profile.logging>debug</profile.logging>
-                <profile.changelogSchemaName>Panin</profile.changelogSchemaName>
+                <profile.changelogSchemaName>public</profile.changelogSchemaName>
             </properties>
         </profile>
     </profiles>
