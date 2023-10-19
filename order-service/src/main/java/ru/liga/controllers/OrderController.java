@@ -1,16 +1,23 @@
 package ru.liga.controllers;
 
+import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import ru.liga.models.Order;
+import ru.liga.services.OrderService;
 
 @RestController
+@AllArgsConstructor
 public class OrderController {
 
-
-//    @PostMapping
-//    public ResponseEntity<Order> createOrder(@RequestBody Order order) {
-//        Order createdOrder = orderService.createOrder(order);
-//        return ResponseEntity.ok(createdOrder);
-//    }
+    private final OrderService orderService;
+    @PostMapping
+    public ResponseEntity<Order> createOrder(@RequestBody Order order) {
+        Order createdOrder = orderService.createOrder(order);
+        return ResponseEntity.ok(createdOrder);
+    }
 //
 //    // Read (Retrieve) all
 //    @GetMapping

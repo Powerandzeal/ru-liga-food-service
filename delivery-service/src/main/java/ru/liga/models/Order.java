@@ -1,24 +1,19 @@
 package ru.liga.models;
 
-import lombok.Data;
-
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Data
-@Entity
-public class Orders {
+public class Order {
     @Id
     private Long id;
     @Column
-    private int customerId;
+    private Long customerId;
     @Column
-    private int restaurantId;
+    private Long restaurantId;
     @Column
     private String statusOrder;
     @Column
-    private int currierId;
+    private Long currierId;
     @Column
     private int timeDelivery;
 }

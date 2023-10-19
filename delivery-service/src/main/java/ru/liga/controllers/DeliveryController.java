@@ -1,22 +1,27 @@
 package ru.liga.controllers;
 
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.liga.models.Courier;
+import ru.liga.services.CurrierService;
 
 import java.util.List;
 
 @RestController
+@AllArgsConstructor
 public class DeliveryController {
-    @PostMapping
+
+    private final CurrierService currierService;
+
+
+    @PostMapping("/createCourier")
     public ResponseEntity<Courier> createCourier(@RequestBody Courier courier) {
-//        Courier createdCourier = courierService.createCourier(courier);
-        return
-//                ResponseEntity.ok(createdCourier)
-              null  ;
+        Courier createdCourier = currierService.createCourier(courier);
+        return ResponseEntity.ok(createdCourier);
     }
 
-    @GetMapping
+    @GetMapping("gelAllCouriers")
     public ResponseEntity<List<Courier>> getAllCouriers() {
 //        List<Courier> couriers = courierService.getAllCouriers();
         return
@@ -25,14 +30,14 @@ public class DeliveryController {
     }
 
 
-    @GetMapping("/{courierId}")
+    @GetMapping("/getCourier")
     public ResponseEntity<Courier> getCourierById(@PathVariable Long courierId) {
 //        Courier courier = courierService.getCourierById(courierId);
         return null;
     }
 
     // Update
-    @PutMapping("/{courierId}")
+    @PutMapping("/updateCourierById")
     public ResponseEntity<Courier> updateCourier(
             @PathVariable Long courierId,
             @RequestBody Courier updatedCourier
@@ -42,7 +47,7 @@ public class DeliveryController {
     }
 
     // Delete
-    @DeleteMapping("/{courierId}")
+    @DeleteMapping("/deleteCourierById")
     public ResponseEntity<Void> deleteCourier(@PathVariable Long courierId) {
 //        courierService.deleteCourier(courierId);
         return ResponseEntity.noContent().build();
