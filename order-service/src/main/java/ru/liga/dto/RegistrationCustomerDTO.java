@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class RegistrationCustomerDTO {
     String name;
-    int phone;
+    String phone;
     String email;
     String address;
 
