@@ -13,5 +13,12 @@
         </rollback>
     </changeSet>
 
+    <changeSet id="2023-21-10 11:37:00" author="panin">
+        <sqlFile path="v01/insertData.sql" relativeToChangelogFile="true"/>
+    <rollback>
+        <sqlFile path="v01/rollback/insert_data_rollback.sql" relativeToChangelogFile="true"/>
+    </rollback>
+    </changeSet>
+
 
 </databaseChangeLog>

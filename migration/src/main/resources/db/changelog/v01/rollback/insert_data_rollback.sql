@@ -1,0 +1,9 @@
+DELETE from order_items where id =1;
+DELETE from orders where id =1;
+DELETE from restaurant_menu_items where id =1;
+DELETE from restaurant_menu_items where id =2;
+DELETE from restaurant_menu_items where id =3;
+DELETE from order_items where id =1;
+DELETE from restaurants where id =1;
+DELETE from customers where id =1;
+DELETE from courier where id =1;

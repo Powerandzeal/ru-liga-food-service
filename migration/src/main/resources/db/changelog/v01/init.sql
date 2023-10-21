@@ -8,13 +8,13 @@ CREATE TABLE Customers
 
 );
 
-CREATE TABLE Currier
+CREATE TABLE Courier
 (
     id           SERIAL PRIMARY KEY,
     name         VARCHAR(255),
     phoneNumber  VARCHAR(15),
     Order_Status VARCHAR(255),
-    coordinate   POINT
+    coordinate   VARCHAR(255)
 );
 -- Создание таблицы "Рестораны"
 CREATE TABLE Restaurants
@@ -31,8 +31,8 @@ CREATE TABLE Orders
     id              SERIAL PRIMARY KEY,
     id_Customer     INT REFERENCES Customers (id),
     id_Restaurants  INT REFERENCES Restaurants (id),
-    id_Order_Status INT,
-    id_Currier      INT REFERENCES Currier (ID),
+    id_Order_Status VARCHAR(255),
+    id_Courier      INT REFERENCES Courier (ID),
     OrderTime       TIMESTAMP
 );
 CREATE TABLE Restaurant_Menu_Items
@@ -41,7 +41,7 @@ CREATE TABLE Restaurant_Menu_Items
     id_restaurant INT REFERENCES Restaurants (ID),
     name_items    VARCHAR(255),
     price         DECIMAL(10, 2),
-    description   TEXT,
+    description   VARCHAR(255),
     image         VARCHAR(255)
 );
 -- Создание таблицы "Заказ_айтемы"
