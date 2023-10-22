@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.liga.models.Courier;
-import ru.liga.services.CurrierService;
+import ru.liga.services.CourierService;
 
 import java.util.List;
 
@@ -12,28 +12,26 @@ import java.util.List;
 @AllArgsConstructor
 public class DeliveryController {
 
-    private final CurrierService currierService;
+    private final CourierService courierService;
 
 
     @PostMapping("/createCourier")
     public ResponseEntity<Courier> createCourier(@RequestBody Courier courier) {
-        Courier createdCourier = currierService.createCourier(courier);
+        Courier createdCourier = courierService.createCourier(courier);
         return ResponseEntity.ok(createdCourier);
     }
 
     @GetMapping("gelAllCouriers")
     public ResponseEntity<List<Courier>> getAllCouriers() {
-//        List<Courier> couriers = courierService.getAllCouriers();
-        return
-//                ResponseEntity.ok(couriers)
-                null;
+
+        return ResponseEntity.ok(courierService.getAllCourier());
+
     }
 
 
-    @GetMapping("/getCourier")
-    public ResponseEntity<Courier> getCourierById(@PathVariable Long courierId) {
-//        Courier courier = courierService.getCourierById(courierId);
-        return null;
+    @GetMapping("/getCourierById")
+    public ResponseEntity<Courier> getCourierById(@RequestParam Long courierId) {
+        return ResponseEntity.ok(courierService.getCourierById(courierId));
     }
 
     // Update

@@ -20,21 +20,21 @@ public class CustomerController {
         // Обработка POST-запроса /customer/order
         // Возвращение HTTP-ответа
     }
-    @GetMapping("/orders")
+    @GetMapping("/getCustomerById")
     public Optional<Customers> getCustomerById(@RequestParam Long customerId ) {
            return customerService.getCustomerById(customerId);
         // Обработка GET-запроса /customer/orders
         // Возвращение HTTP-ответа
     }
 
-    @GetMapping("/orders")
+    @PutMapping("/updateCustomer")
     public ResponseEntity<?> updateCustomer(@RequestParam Long customerId ) {
         // Обработка GET-запроса /customer/orders
         // Возвращение HTTP-ответа
         return ResponseEntity.ok(customerService.updateCustomerById(customerId));
     }
 
-    @GetMapping("/order/{id}")
+    @DeleteMapping("/order/{id}")
     public ResponseEntity<?> deleteCustomer(@RequestParam Long id) {
         customerService.deleteCustomerById(id);
         return ResponseEntity.ok("Успешно удалено");
