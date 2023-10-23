@@ -16,8 +16,9 @@ public class Courier {
     private Long id;
     private String name;
     private int phonenumber;
+    private String statusOrder;
     private String coordinate;
-    private String order_status;
+
 //    @OneToMany
 //    private List<Orders> orders;
 

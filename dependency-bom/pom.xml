@@ -24,7 +24,8 @@
         <liquibase-core.version>4.11.0</liquibase-core.version>
         <java.version>11</java.version>
         <swagger.version>1.6.12</swagger.version>
-        <mybatis.version>3.5.13</mybatis.version>
+        <mybatis.version.spring>2.3.0</mybatis.version.spring>
+
     </properties>
 
 
@@ -89,11 +90,18 @@
                 <artifactId>liquibase-core</artifactId>
                 <version>${liquibase.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>2.3.1</version>
+                <version>${mybatis.version.spring}</version>
             </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>3.5.13</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
@@ -101,11 +109,13 @@
                 <version>${lombok.version}</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
-            <dependency>
-                <groupId>org.mybatis</groupId>
-                <artifactId>mybatis</artifactId>
-                <version>${mybatis.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.mybatis.spring.boot</groupId>-->
+<!--                <artifactId>mybatis-spring-boot-starter-test</artifactId>-->
+<!--                <version>${mybatis.version.spring}</version>-->
+<!--                <scope>test</scope>-->
+<!--            </dependency>-->
+
 
 
             <!--            		<dependency>-->
