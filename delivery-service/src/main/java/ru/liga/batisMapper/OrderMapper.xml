@@ -21,13 +21,8 @@
         WHERE id = #{id}
     </select>
 
-    <resultMap  id="Order" type="ru.liga.models.Orders" >
-        <id property="id" column="id"/>
-<!--        <result property="customerId" column="id_customer"/>-->
-<!--        <result property="restaurantId" column="id_restaurants"/>-->
-        <result property="statusOrder" column="statusorder"/>
-<!--        <result property="currierId" column="id_courier"/>-->
-<!--        <result property="timeDelivery" column="ordertime"/>-->
-    </resultMap>
+
+
+
 </mapper>
 
