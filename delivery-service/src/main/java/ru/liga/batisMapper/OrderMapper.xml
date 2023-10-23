@@ -12,7 +12,7 @@
         <result property="currierId" column="id_courier"/>
         <result property="timeDelivery" column="ordertime"/>
     </resultMap>
-    <select id="getOrdersByStatus "  parameterType="java.lang.String" resultMap="Order">
+    <select id="getOrdersByStatuss"  parameterType="java.lang.String" resultMap="Order">
         SELECT * from orders
         WHERE statusorder = #{statusOrder}
     </select>

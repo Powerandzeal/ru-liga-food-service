@@ -1,7 +1,6 @@
 package ru.liga.services;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.liga.batisMapper.OrderMapper;
 import ru.liga.models.Courier;
@@ -34,9 +33,9 @@ public class CourierService {
         return  courierRepository.save(courier);
     }
 
-    public List<Orders> getOrderByStatus(String status) {
+    public List<Orders> getOrdersByStatus(String status) {
         System.out.println(status);
-       return  orderMapper.getOrdersByStatus(status);
+       return  orderMapper.getOrdersByStatuss(status);
     }
     public List<Orders> getOrderByStatus2(String status) {
         return  orderRepository.getOrdersByStatusOrder(status);
