@@ -2,18 +2,18 @@ package ru.liga;
 
 public enum StatusCurrier {
 
-    //Customer status
+    //CustomerStatusOrder status
     CUSTOMER_CREATED,
     CUSTOMER_PAID,
     CUSTOMER_CANCELLED,
 
-    //Kitchen status
+    //KitchenStatusOrder status
     KITCHEN_ACCEPTED,
     KITCHEN_PREPARING,
     KITCHEN_DENIED,
     KITCHEN_REFUNDED,
 
-    //Delivery Status
+    //DeliveryStatusOrder Status
     DELIVERY_PENDING,
     DELIVERY_PICKING,
     DELIVERY_DELIVERING,
