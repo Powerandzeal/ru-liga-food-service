@@ -1,11 +1,11 @@
 package ru.liga.controllers;
 
 import lombok.AllArgsConstructor;
+import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import ru.liga.dto.Order.CreateOrderDTO;
 import ru.liga.models.Orders;
 import ru.liga.services.CourierService;
 import ru.liga.services.OrderStatus;
@@ -14,21 +14,30 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("/orders")
 public class OrderController {
-    private CourierService courierService;
-    @Autowired
-    OrderStatus orderStatus;
+    private final CourierService courierService;
+
+    private final OrderStatus orderStatus;
+
+    @PostMapping
+    public ResponseEntity<Orders> createOrder(CreateOrderDTO orderDTO) {
+        orderStatus.createOrder();
+        return null;
+    }
 
     @GetMapping("/getCourierByStatus")
-    public ResponseEntity <List<Orders>> getOrderByStatus(@RequestParam String status) {
+    public ResponseEntity<List<Orders>> getOrderByStatus(@RequestParam String status) {
         return ResponseEntity.ok(orderStatus.getOrderByStatus(status));
     }
+
     @GetMapping("/getCourierByStatus2")
-    public ResponseEntity <List<Orders>> getOrderByStatus2(@RequestParam String status) {
+    public ResponseEntity<List<Orders>> getOrderByStatus2(@RequestParam String status) {
         return ResponseEntity.ok(courierService.getOrderByStatus2(status));
     }
-    @GetMapping("/getOrderById")
-    public ResponseEntity <Orders> getOrderById(@RequestParam Long id) {
-        return ResponseEntity.ok(orderStatus.getOrderById(id));
+
+    @GetMapping("/{orderId}")
+    public ResponseEntity<Orders> getOrderById(@PathVariable Long orderId) {
+        return ResponseEntity.ok(orderStatus.getOrderById(orderId));
     }
 }

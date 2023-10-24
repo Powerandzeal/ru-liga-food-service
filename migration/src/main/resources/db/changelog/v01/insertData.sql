@@ -1,4 +1,4 @@
-INSERT INTO courier (name,phoneNumber,statusOrder,coordinate) values ('ivan',232323,'get', '1232.323');
+INSERT INTO courier (name,phoneNumber,statusOrder,coordinate) values ('ivan',232323,'DELIVERY_PENDING', '1232.323');
 INSERT INTO customers (phone,email,address) values ('79290473013','seregaP@gmail.com','Нижний Новгород,ул Веденяпина,д2,кв 32');
 INSERT INTO restaurants (name_restaurant,address,status_restaurant) values ('Kfc','Проспект молодежынй,д32', 'Created');
 INSERT INTO restaurant_menu_items (id_restaurant,name_items,price,description,image)

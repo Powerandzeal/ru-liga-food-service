@@ -2,10 +2,7 @@ package ru.liga.models;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -15,7 +12,8 @@ public class RestaurantMenuItem {
     Long id;
 
     @Column(name= "id_restaurant")
-    int restaurantId;
+            @ManyToOne
+    Restaurant restaurantId;
 
     @Column(name= "namt_items")
     String name;
@@ -24,7 +22,7 @@ public class RestaurantMenuItem {
     int price;
 
     @Column(name= "description")
-    byte image;
+    byte [] image;
 
     @Column(name= "image")
     String description;

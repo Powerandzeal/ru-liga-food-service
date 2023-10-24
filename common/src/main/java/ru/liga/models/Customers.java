@@ -4,6 +4,7 @@ import lombok.Data;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -22,8 +23,8 @@ public class Customers {
 
     @Column(name = "address")
     private String address;
-    //    @OneToMany
-//    private List<Orders> order;
+    @OneToMany
+    private List<Orders> order;
 
 
 }

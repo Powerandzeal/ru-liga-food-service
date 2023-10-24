@@ -13,10 +13,12 @@ public class OrderItems {
     private Long id;
 
     @Column(name = "id_order")
-    private int orderId;
+    @ManyToOne
+    private Orders orderId;
 
     @Column(name = "id_restraunt_menu_items")
-    private int restaurantMenuItemId;
+    @ManyToOne
+    private RestaurantMenuItem restaurantMenuItemId;
 
     @Column(name = "price")
     private int price;

@@ -1,9 +1,11 @@
 package ru.liga.models;
 
 import lombok.Data;
+import ru.liga.Enum.DeliveryStatusOrder;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Data
 @Entity
@@ -13,13 +15,17 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "id_customer")
-    private int customerId;
+    @OneToOne
+    private Customers customerId;
     @Column(name = "id_restaurants")
     private int restaurantId;
     @Column(name = "statusorder")
-    private String statusOrder;
+    @Enumerated(EnumType.STRING)
+    private DeliveryStatusOrder statusOrder;
     @Column(name = "id_courier")
     private int currierId;
     @Column(name = "ordertime")
     private Timestamp timeDelivery;
+    @OneToMany
+    List<OrderItems> orderItemsList;
 }

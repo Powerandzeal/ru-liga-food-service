@@ -3,6 +3,7 @@ package ru.liga.services;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.liga.batisMapper.OrderMapper;
+import ru.liga.dto.Order.CreateOrderDTO;
 import ru.liga.models.Orders;
 
 import java.util.List;
@@ -17,5 +18,9 @@ public class OrderStatus {
     }
     public List<Orders> getOrderByStatus (String status){
         return  orderMapper.getOrdersByStatuss(status);
+    }
+
+    public Orders createOrder() {
+        return null;
     }
 }

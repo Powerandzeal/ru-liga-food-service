@@ -4,6 +4,7 @@ import lombok.Data;
 import ru.liga.Enum.DeliveryStatusOrder;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -18,12 +19,13 @@ public class Courier {
     @Column(name = "phonenumber")
     private String phonenumber;
     @Column(name = "statusorder")
+    @Enumerated(EnumType.STRING)
     private DeliveryStatusOrder statusOrder;
     @Column(name = "coordinate")
     private String coordinate;
 
-//    @OneToMany
-//    private List<Orders> orders;
+    @OneToMany
+    private List<Orders> orders;
 
 
 }

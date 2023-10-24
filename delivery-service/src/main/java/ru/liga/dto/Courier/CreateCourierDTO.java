@@ -1,4 +1,4 @@
-package ru.liga.dto;
+package ru.liga.dto.Courier;
 
 public class CreateCourierDTO {
 }

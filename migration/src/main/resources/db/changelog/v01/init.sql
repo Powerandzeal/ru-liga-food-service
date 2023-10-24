@@ -42,7 +42,7 @@ CREATE TABLE Restaurant_Menu_Items
     name_items    VARCHAR(255),
     price         DECIMAL(10, 2),
     description   VARCHAR(255),
-    image         VARCHAR(255)
+    image         bytea
 );
 -- Создание таблицы "Заказ_айтемы"
 CREATE TABLE Order_Items
