@@ -14,18 +14,26 @@ public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "id_customer")
-    @OneToOne
+    @ManyToOne
     private Customers customerId;
+
     @Column(name = "id_restaurants")
-    private int restaurantId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_customer")
+    private Restaurant restaurantId;
+
     @Column(name = "statusorder")
     @Enumerated(EnumType.STRING)
     private DeliveryStatusOrder statusOrder;
+
     @Column(name = "id_courier")
     private int currierId;
+
     @Column(name = "ordertime")
     private Timestamp timeDelivery;
+
     @OneToMany
     List<OrderItems> orderItemsList;
 }
