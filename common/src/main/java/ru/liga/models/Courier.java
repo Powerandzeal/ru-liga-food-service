@@ -1,25 +1,22 @@
 package ru.liga.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import ru.liga.Enum.DeliveryStatusOrder;
+import ru.liga.StatusOrder;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
-@Table(name = "courier")
+
 public class Courier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
-    @Column(name = "name")
     private String name;
-    @Column(name = "phonenumber")
-    private String phonenumber;
-    @Column(name = "statusorder")
-    private DeliveryStatusOrder statusOrder;
-    @Column(name = "coordinate")
+    private int phonenumber;
+    private String statusOrder;
     private String coordinate;
 
 //    @OneToMany

@@ -1,7 +1,6 @@
 package ru.liga;
 
-public enum StatusCurrier {
-
+public enum StatusOrder {
     //Customer status
     CUSTOMER_CREATED,
     CUSTOMER_PAID,

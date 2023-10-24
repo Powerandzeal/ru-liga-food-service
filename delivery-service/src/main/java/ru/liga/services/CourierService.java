@@ -2,6 +2,7 @@ package ru.liga.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.liga.batisMapper.OrderMapper;
 import ru.liga.models.Courier;
 import ru.liga.models.Orders;
 import ru.liga.repositoryes.CourierRepository;
@@ -14,7 +15,7 @@ import java.util.List;
 public class CourierService {
     private final CourierRepository courierRepository;
 
-
+    private final OrderMapper orderMapper;
     private final OrderRepository orderRepository;
     public Courier createCourier(Courier courier){
         return  courierRepository.save(courier);
@@ -32,7 +33,10 @@ public class CourierService {
         return  courierRepository.save(courier);
     }
 
-
+    public List<Orders> getOrdersByStatus(String status) {
+        System.out.println(status);
+       return  orderMapper.getOrdersByStatuss(status);
+    }
     public List<Orders> getOrderByStatus2(String status) {
         return  orderRepository.getOrdersByStatusOrder(status);
     }
