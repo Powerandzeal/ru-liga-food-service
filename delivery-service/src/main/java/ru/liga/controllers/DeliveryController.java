@@ -1,55 +1,57 @@
 package ru.liga.controllers;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.liga.dto.Courier.UpdateCourierDTO;
 import ru.liga.models.Courier;
-import ru.liga.services.CurrierService;
+import ru.liga.services.CourierService;
 
 import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("/courier")
+@Slf4j
 public class DeliveryController {
 
-    private final CurrierService currierService;
+    private final CourierService courierService;
 
 
-    @PostMapping("/createCourier")
+    @PostMapping("/create-courier")
     public ResponseEntity<Courier> createCourier(@RequestBody Courier courier) {
-        Courier createdCourier = currierService.createCourier(courier);
+        Courier createdCourier = courierService.createCourier(courier);
         return ResponseEntity.ok(createdCourier);
     }
 
-    @GetMapping("gelAllCouriers")
+    @GetMapping("get-all-couriers")
     public ResponseEntity<List<Courier>> getAllCouriers() {
-//        List<Courier> couriers = courierService.getAllCouriers();
-        return
-//                ResponseEntity.ok(couriers)
-                null;
+
+        return ResponseEntity.ok(courierService.getAllCourier());
+
     }
 
 
-    @GetMapping("/getCourier")
+    @GetMapping("/{courierId}")
     public ResponseEntity<Courier> getCourierById(@PathVariable Long courierId) {
-//        Courier courier = courierService.getCourierById(courierId);
-        return null;
+        return ResponseEntity.ok(courierService.getCourierById(courierId));
     }
 
     // Update
-    @PutMapping("/updateCourierById")
-    public ResponseEntity<Courier> updateCourier(
-            @PathVariable Long courierId,
-            @RequestBody Courier updatedCourier
+    @PutMapping("/{courierId}")
+    public ResponseEntity<String> updateCourier(@PathVariable Long courierId,
+                                                 @RequestBody UpdateCourierDTO updateCourierDTO
     ) {
-//        Courier courier = courierService.updateCourier(courierId, updatedCourier);
-        return null;
+        log.info("updateCourierById ");
+        courierService.updateCourierById(courierId, updateCourierDTO);
+        return ResponseEntity.ok("Курьер обновлен");
     }
 
     // Delete
-    @DeleteMapping("/deleteCourierById")
-    public ResponseEntity<Void> deleteCourier(@PathVariable Long courierId) {
-//        courierService.deleteCourier(courierId);
-        return ResponseEntity.noContent().build();
+    @DeleteMapping("/{courierId}")
+    public ResponseEntity<String> deleteCourier(@PathVariable Long courierId) {
+        courierService.deleteCourierById(courierId);
+        return ResponseEntity.ok("Курьер удален");
     }
 }

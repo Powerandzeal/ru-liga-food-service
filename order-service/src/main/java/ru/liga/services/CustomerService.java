@@ -6,6 +6,8 @@ import ru.liga.dto.RegistrationCustomerDTO;
 import ru.liga.models.Customers;
 import ru.liga.repositoryes.CustomerRepository;
 
+import java.util.Optional;
+
 @Service
 @AllArgsConstructor
 public class CustomerService {
@@ -17,5 +19,16 @@ public class CustomerService {
         customers.setEmail(registrationCustomerDTO.getEmail());
 
         return customerRepository.save(customers);
+    }
+    public Optional<Customers> getCustomerById (Long idCustomer) {
+        return customerRepository.findById(idCustomer);
+    }
+
+    public Customers updateCustomerById(Long id) {
+        return null;
+    }
+    public void deleteCustomerById(Long id) {
+        customerRepository.deleteById(id);
+
     }
 }
