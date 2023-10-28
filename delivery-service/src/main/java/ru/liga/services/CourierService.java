@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import ru.liga.Enum.DeliveryStatusOrder;
+import ru.liga.dto.Courier.CreateCourierDTO;
 import ru.liga.dto.Courier.UpdateCourierDTO;
 import ru.liga.models.Courier;
 import ru.liga.models.Orders;
@@ -19,7 +21,12 @@ public class CourierService {
     private final CourierRepository courierRepository;
 
     private final OrderRepository orderRepository;
-    public Courier createCourier(Courier courier){
+    public Courier createCourier(CreateCourierDTO courierDTO){
+        Courier courier = new Courier();
+        courier.setPhonenumber(courierDTO.getPhonenumber());
+        courier.setName(courierDTO.getName());
+        courier.setCoordinate(courierDTO.getCoordinate());
+
         return  courierRepository.save(courier);
     }
     public Courier getCourierById (Long courierId){
@@ -40,7 +47,7 @@ public class CourierService {
           courierRepository.deleteById(id);
     }
 
-    public List<Orders> getOrderByStatus2(String status) {
+    public List<Orders> getOrderByStatus2(DeliveryStatusOrder status) {
         return  orderRepository.getOrdersByStatusOrder(status);
     }
 }

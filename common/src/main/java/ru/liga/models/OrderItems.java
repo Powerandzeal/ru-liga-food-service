@@ -3,6 +3,8 @@ package ru.liga.models;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Data
@@ -12,16 +14,17 @@ public class OrderItems {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "id_order")
     @ManyToOne
-    private Orders orderId;
+    @JoinColumn(name = "id")
+    private Orders order;
 
-    @Column(name = "id_restraunt_menu_items")
-    @ManyToOne
+
+    @OneToOne
+    @Column(name = "id_restaurant_menu_items")
     private RestaurantMenuItem restaurantMenuItemId;
 
     @Column(name = "price")
-    private int price;
+    private double price;
 
     @Column(name = "quantity")
     private int quantity;

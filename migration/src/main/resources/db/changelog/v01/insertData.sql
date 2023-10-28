@@ -7,5 +7,4 @@ INSERT INTO restaurant_menu_items (id_restaurant,name_items,price,description,im
 values (1,'Чикен бургер',170, 'Бургер из куриной котлеты, с огурцами и помидорами и мягкой булочки','image133');
 INSERT INTO restaurant_menu_items (id_restaurant,name_items,price,description,image)
 values (1,'Добрый кола',90, 'Лимонад','image134');
-INSERT INTO orders (id_customer,id_restaurants,statusOrder,id_courier,ordertime) values (1,1,'Cooking', 1,'2023-10-19 14:30:00');
-INSERT INTO order_items (id_order,id_restaurant_menu_items,price,quantity) values (1,1,1200,1);
+

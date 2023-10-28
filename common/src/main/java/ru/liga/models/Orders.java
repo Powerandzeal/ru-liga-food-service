@@ -2,6 +2,7 @@ package ru.liga.models;
 
 import lombok.Data;
 import ru.liga.Enum.DeliveryStatusOrder;
+import ru.liga.Enum.OrderStatus;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -15,25 +16,28 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "id_customer")
     @ManyToOne
-    private Customers customerId;
-
-    @Column(name = "id_restaurants")
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_customer")
-    private Restaurant restaurantId;
+    private Customers customer;
+
+    @ManyToOne
+    @JoinColumn(name = "id_restaurants")
+    private Restaurant restaurant;
 
     @Column(name = "statusorder")
     @Enumerated(EnumType.STRING)
-    private DeliveryStatusOrder statusOrder;
+    private OrderStatus orderStatus;
 
-    @Column(name = "id_courier")
-    private int currierId;
+    @ManyToOne
+    @JoinColumn(name = "id_courier")
+    private Courier courier;
+
+    @Column(name = "create_time")
+    private Timestamp createOrderTime;
 
     @Column(name = "ordertime")
     private Timestamp timeDelivery;
 
     @OneToMany
-    List<OrderItems> orderItemsList;
+    private List<OrderItems> orderItemsList;
 }

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.liga.dto.Courier.CreateCourierDTO;
 import ru.liga.dto.Courier.UpdateCourierDTO;
 import ru.liga.models.Courier;
 import ru.liga.services.CourierService;
@@ -20,7 +21,7 @@ public class DeliveryController {
 
 
     @PostMapping("/create-courier")
-    public ResponseEntity<Courier> createCourier(@RequestBody Courier courier) {
+    public ResponseEntity<Courier> createCourier(@RequestBody CreateCourierDTO courier) {
         Courier createdCourier = courierService.createCourier(courier);
         return ResponseEntity.ok(createdCourier);
     }

@@ -23,7 +23,7 @@ public class Customers {
 
     @Column(name = "address")
     private String address;
-    @OneToMany
+    @OneToMany(mappedBy = "customer")
     private List<Orders> order;
 
 

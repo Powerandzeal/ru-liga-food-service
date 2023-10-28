@@ -40,6 +40,12 @@ public class CustomerController {
         return ResponseEntity.ok("Успешно удалено");
 
     }
+    @GetMapping("/getAllOrders")
+    public Optional<Customers> getAllOrders(@RequestParam Long customerId ) {
+        return customerService.getCustomerById(customerId);
+        // Обработка GET-запроса /customer/orders
+        // Возвращение HTTP-ответа
+    }
 
 
 }

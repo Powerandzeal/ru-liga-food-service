@@ -5,6 +5,7 @@ import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.liga.Enum.DeliveryStatusOrder;
 import ru.liga.dto.Order.CreateOrderDTO;
 import ru.liga.models.Orders;
 import ru.liga.services.CourierService;
@@ -20,11 +21,11 @@ public class OrderController {
 
     private final OrderStatus orderStatus;
 
-    @PostMapping
-    public ResponseEntity<Orders> createOrder(CreateOrderDTO orderDTO) {
-        orderStatus.createOrder();
-        return null;
-    }
+//    @PostMapping
+//    public ResponseEntity<Orders> createOrder(@ReCreateOrderDTO orderDTO) {
+//        orderStatus.createOrder();
+//        return null;
+//    }
 
     @GetMapping("/getCourierByStatus")
     public ResponseEntity<List<Orders>> getOrderByStatus(@RequestParam String status) {
@@ -32,7 +33,7 @@ public class OrderController {
     }
 
     @GetMapping("/getCourierByStatus2")
-    public ResponseEntity<List<Orders>> getOrderByStatus2(@RequestParam String status) {
+    public ResponseEntity<List<Orders>> getOrderByStatus2(@RequestParam DeliveryStatusOrder status) {
         return ResponseEntity.ok(courierService.getOrderByStatus2(status));
     }
 

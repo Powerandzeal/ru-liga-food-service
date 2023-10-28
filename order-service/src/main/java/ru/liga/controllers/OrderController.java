@@ -4,8 +4,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ru.liga.models.Order;
+import ru.liga.dto.CreateOrderDTO;
+import ru.liga.models.Orders;
 import ru.liga.services.OrderService;
 
 @RestController
@@ -13,10 +15,10 @@ import ru.liga.services.OrderService;
 public class OrderController {
 
     private final OrderService orderService;
-    @PostMapping
-    public ResponseEntity<Order> createOrder(@RequestBody Order order) {
-        Order createdOrder = orderService.createOrder(order);
-        return ResponseEntity.ok(createdOrder);
+    @PostMapping("/{customerId}")
+    public ResponseEntity<Orders> createOrder(@RequestBody CreateOrderDTO createOrderDTO, @RequestParam Long customerId) {
+
+        return ResponseEntity.ok(orderService.createOrder(createOrderDTO,customerId));
     }
 //
 //    // Read (Retrieve) all
