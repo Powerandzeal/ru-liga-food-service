@@ -24,10 +24,12 @@ public class RestaurantMenuItem {
     @Column(name= "price")
     double price;
 
-    @Column(name= "description")
-    byte [] image;
+//    @Lob // Это аннотация для больших объектов (large objects)
+//    @Basic(fetch = FetchType.LAZY) // Добавляем fetch-стратегию, если это подходит для вашего случая
+//    @Column(name= "image", columnDefinition = "bytea")
+//    byte[] image;
 
-    @Column(name= "image")
+    @Column(name= "description")
     String description;
 
 
