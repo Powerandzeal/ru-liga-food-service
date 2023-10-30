@@ -6,4 +6,5 @@ public enum KitchenStatusOrder {
     KITCHEN_PREPARING,
     KITCHEN_DENIED,
     KITCHEN_REFUNDED,
+    KITCHEN_OPEN
 }

@@ -21,8 +21,8 @@ public class CustomerController {
         // Возвращение HTTP-ответа
     }
     @GetMapping("/getCustomerById")
-    public Optional<Customers> getCustomerById(@RequestParam Long customerId ) {
-           return customerService.getCustomerById(customerId);
+    public ResponseEntity<Customers> getCustomerById(@RequestParam Long customerId ) {
+           return ResponseEntity.ok(customerService.getCustomerById(customerId));
         // Обработка GET-запроса /customer/orders
         // Возвращение HTTP-ответа
     }
@@ -42,7 +42,7 @@ public class CustomerController {
     }
     @GetMapping("/getAllOrders")
     public Optional<Customers> getAllOrders(@RequestParam Long customerId ) {
-        return customerService.getCustomerById(customerId);
+        return Optional.ofNullable(customerService.getCustomerById(customerId));
         // Обработка GET-запроса /customer/orders
         // Возвращение HTTP-ответа
     }

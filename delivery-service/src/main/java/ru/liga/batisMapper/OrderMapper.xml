@@ -4,24 +4,22 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ru.liga.batisMapper.OrderMapper">
 
-    <resultMap  id="Order" type="ru.liga.models.Orders" >
-        <id property="id" column="id"/>
+    <resultMap  customer_id="Order" type="ru.liga.models.Orders" >
+        <customer_id property="customer_id" column="customer_id"/>
         <result property="customerId" column="id_customer"/>
         <result property="restaurantId" column="id_restaurants"/>
         <result property="statusOrder" column="statusorder"/>
         <result property="currierId" column="id_courier"/>
         <result property="timeDelivery" column="ordertime"/>
     </resultMap>
-    <select id="getOrdersByStatuss"  parameterType="java.lang.String" resultMap="Order">
+    <select customer_id="getOrdersByStatuss"  parameterType="java.lang.String" resultMap="Order">
         SELECT * from orders
         WHERE statusorder = #{statusOrder}
     </select>
-    <select id="getOrderById"  parameterType="java.lang.Long" resultMap="Order">
+    <select customer_id="getOrderById"  parameterType="java.lang.Long" resultMap="Order">
         SELECT * from orders
-        WHERE id = #{id}
+        WHERE customer_id = #{customer_id}
     </select>
-
-
 
 
 </mapper>

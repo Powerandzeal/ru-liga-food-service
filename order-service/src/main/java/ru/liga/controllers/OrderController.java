@@ -2,23 +2,46 @@ package ru.liga.controllers;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.liga.dto.CreateOrderDTO;
+import ru.liga.dto.RestourantMenuDTO;
+import ru.liga.dto.RestourantMenuItemDTO;
 import ru.liga.models.Orders;
+import ru.liga.models.Restaurant;
+import ru.liga.models.RestaurantMenuItem;
 import ru.liga.services.OrderService;
+
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
 public class OrderController {
 
     private final OrderService orderService;
-    @PostMapping("/{customerId}")
+    @PostMapping("/createOrder{customerId}")
     public ResponseEntity<Orders> createOrder(@RequestBody CreateOrderDTO createOrderDTO, @RequestParam Long customerId) {
 
         return ResponseEntity.ok(orderService.createOrder(createOrderDTO,customerId));
+    }
+    @GetMapping("/getAllRestaurant")
+    public ResponseEntity<List<Restaurant>> getAllRestaurant() {
+
+        return ResponseEntity.ok( orderService.getAllRestaurant());
+    }
+    @GetMapping("/findByIdRestouarnt{id}")
+    public ResponseEntity<RestourantMenuDTO> findByIdRestouarnt(@RequestParam Long id) {
+
+        return ResponseEntity.ok( orderService.findByIdRestaurant(id));
+    }
+    @GetMapping("/getMenu{id}")
+    public ResponseEntity<List<RestaurantMenuItem>> getMenu(@RequestParam Long id) {
+
+        return ResponseEntity.ok( orderService.getMenu(id));
+    }
+    @GetMapping("/getMenu2{id}")
+    public ResponseEntity<List<RestourantMenuItemDTO>> getMenu2(@RequestParam Long id) {
+
+        return ResponseEntity.ok( orderService.getMenu2(id));
     }
 //
 //    // Read (Retrieve) all

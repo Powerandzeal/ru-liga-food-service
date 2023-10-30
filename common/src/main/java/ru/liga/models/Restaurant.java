@@ -11,15 +11,20 @@ import java.util.List;
 @Table(name = "restaurants")
 public class Restaurant {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "restaurant_id")
     Long id;
+
     @Column(name = "name_restaurant")
-    String nameKitchen;
+    String nameRestaurant;
+
     @Column(name = "address")
     String addressKitchen;
-    @Column(name = "status_restaurant)")
-    @Enumerated(EnumType.ORDINAL)
+
+    @Column(name = "status_restaurant")
+    @Enumerated(EnumType.STRING)
     KitchenStatusOrder kitchenStatusOrder;
-    @Column(name = "restaurant_menu_items")
-    @OneToMany
-    List<RestaurantMenuItem> restaurantMenuItem;
+
+//    @OneToMany(mappedBy = "restaurant")
+//    List<RestaurantMenuItem> restaurantMenuItem;
 }

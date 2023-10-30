@@ -8,23 +8,27 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "courier")
+@Table(name = "couriers")
 public class Courier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "courier_id")
     private Long id;
+
     @Column(name = "name")
     private String name;
+
     @Column(name = "phonenumber")
     private String phonenumber;
+
     @Column(name = "statusorder")
     @Enumerated(EnumType.STRING)
     private DeliveryStatusOrder statusOrder;
+
     @Column(name = "coordinate")
     private String coordinate;
 
-    @OneToMany
+    @OneToMany(mappedBy = "courier")
     private List<Orders> orders;
 
 

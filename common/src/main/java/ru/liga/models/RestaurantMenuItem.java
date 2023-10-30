@@ -10,11 +10,13 @@ import java.math.BigDecimal;
 @Table(name = "restaurant_menu_items")
 public class RestaurantMenuItem {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name ="restaurant_menu_item_id" )
     Long id;
 
-    @Column(name= "id_restaurant")
     @ManyToOne
-    Restaurant restaurantId;
+    @JoinColumn(name = "id_restaurant")
+    Restaurant restaurant;
 
     @Column(name= "name_items")
     String name;
@@ -27,4 +29,6 @@ public class RestaurantMenuItem {
 
     @Column(name= "image")
     String description;
+
+
 }

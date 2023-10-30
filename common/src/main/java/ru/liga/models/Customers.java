@@ -13,6 +13,7 @@ public class Customers {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "customer_id")
     private Long id;
 
     @Column(name = "phone")
@@ -23,8 +24,9 @@ public class Customers {
 
     @Column(name = "address")
     private String address;
-    @OneToMany(mappedBy = "customer")
-    private List<Orders> order;
+
+//    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private List<Orders> orders;
 
 
 }

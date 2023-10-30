@@ -12,16 +12,16 @@ import java.util.List;
 public class OrderItems {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "order_items_id")
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id")
-    private Orders order;
-
+    @JoinColumn(name ="id_order")
+    private Orders orderEntity;
 
     @OneToOne
-    @Column(name = "id_restaurant_menu_items")
-    private RestaurantMenuItem restaurantMenuItemId;
+    @JoinColumn(name = "id_restaurant_menu_items")
+    private RestaurantMenuItem restaurantMenuItem;
 
     @Column(name = "price")
     private double price;

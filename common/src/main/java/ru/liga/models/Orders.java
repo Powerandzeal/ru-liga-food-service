@@ -12,8 +12,10 @@ import java.util.List;
 @Entity
 @Table(name = "orders")
 public class Orders {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "order_id")
     private Long id;
 
     @ManyToOne
@@ -38,6 +40,9 @@ public class Orders {
     @Column(name = "ordertime")
     private Timestamp timeDelivery;
 
-    @OneToMany
-    private List<OrderItems> orderItemsList;
+//    @OneToMany(mappedBy = "orderEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private List<OrderItems> orderItems;
+
+    @Column(name= "price")
+    double price;
 }
