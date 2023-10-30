@@ -41,7 +41,7 @@ public class CustomerController {
 
     }
     @GetMapping("/getAllOrders")
-    public Optional<Customers> getAllOrders(@RequestParam Long customerId ) {
+    public Optional<Customers> getAllOrdersUser(@RequestParam Long customerId ) {
         return Optional.ofNullable(customerService.getCustomerById(customerId));
         // Обработка GET-запроса /customer/orders
         // Возвращение HTTP-ответа

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.liga.dto.CreateOrderDTO;
+import ru.liga.dto.ResponseOrderDTO;
 import ru.liga.dto.RestourantMenuDTO;
 import ru.liga.dto.RestourantMenuItemDTO;
 import ru.liga.models.Orders;
@@ -19,9 +20,10 @@ public class OrderController {
 
     private final OrderService orderService;
     @PostMapping("/createOrder{customerId}")
-    public ResponseEntity<Orders> createOrder(@RequestBody CreateOrderDTO createOrderDTO, @RequestParam Long customerId) {
+    public ResponseEntity<ResponseOrderDTO> createOrder(@RequestBody CreateOrderDTO createOrderDTO, @RequestParam Long customerId) {
 
         return ResponseEntity.ok(orderService.createOrder(createOrderDTO,customerId));
+
     }
     @GetMapping("/getAllRestaurant")
     public ResponseEntity<List<Restaurant>> getAllRestaurant() {
@@ -42,6 +44,16 @@ public class OrderController {
     public ResponseEntity<List<RestourantMenuItemDTO>> getMenu2(@RequestParam Long id) {
 
         return ResponseEntity.ok( orderService.getMenu2(id));
+    }
+    @GetMapping("/getOrderById{id}")
+    public ResponseEntity<Orders> getOrderById(@RequestParam Long id) {
+
+        return ResponseEntity.ok( orderService.getOrderById(id));
+    }
+    @PutMapping("/pay{id}")
+    public ResponseEntity<String > payOrder(@RequestParam Long orderId) {
+
+        return ResponseEntity.ok( orderService.payOrder(orderId));
     }
 //
 //    // Read (Retrieve) all

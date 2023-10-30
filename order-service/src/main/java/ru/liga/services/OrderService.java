@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.liga.DTO.ItemsDto;
 import ru.liga.Enum.OrderStatus;
 import ru.liga.dto.CreateOrderDTO;
+import ru.liga.dto.ResponseOrderDTO;
 import ru.liga.dto.RestourantMenuDTO;
 import ru.liga.dto.RestourantMenuItemDTO;
 import ru.liga.models.OrderItems;
@@ -17,6 +18,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -60,7 +62,7 @@ public class OrderService {
 //
 //        return ordersRepository.save(order);
 //    }
-public Orders createOrder(CreateOrderDTO orderDTO, Long customerId) {
+public ResponseOrderDTO createOrder(CreateOrderDTO orderDTO, Long customerId) {
     Orders order = new Orders();
     // Заполните поля заказа
 
@@ -83,17 +85,57 @@ public Orders createOrder(CreateOrderDTO orderDTO, Long customerId) {
     order.setRestaurant(restaurantRepository.findById(orderDTO.getRestaurantId()).orElseThrow());
     order.setPrice(calculateSumOrder(orderDTO));
 
-    //  сохранине заказа
+    // Сначала сохраните заказ
     Orders savedOrder = ordersRepository.save(order);
 
-    //  сохранение элемента заказа
+    // Затем сохраните элементы заказа
     for (OrderItems orderItem : listItems) {
         orderItem.setOrderEntity(savedOrder);
         orderItemsRepository.save(orderItem);
     }
 
-    return savedOrder;
+    // Теперь получите необходимую информацию и создайте ResponseOrderDTO
+    ResponseOrderDTO responseOrderDTO = new ResponseOrderDTO();
+    responseOrderDTO.setOrderId(savedOrder.getId());
+    responseOrderDTO.setNameRestaurant(savedOrder.getRestaurant().getNameRestaurant()); // Предположим, что у ресторана есть поле "name"
+    // Также получите список заказанных элементов и рассчитайте общую стоимость
+    List<RestourantMenuItemDTO> listOrder = new ArrayList<>();
+    double orderPrice = calculateSumOrder(orderDTO);
+
+    for (OrderItems orderItem : listItems) {
+        RestourantMenuItemDTO menuItemDTO = new RestourantMenuItemDTO();
+        // Установите информацию о заказанном элементе меню в menuItemDTO
+         menuItemDTO.setId(orderItem.getRestaurantMenuItem().getId());
+         menuItemDTO.setName(orderItem.getRestaurantMenuItem().getName());
+         menuItemDTO.setPrice(orderItem.getRestaurantMenuItem().getPrice());
+//         Добавьте menuItemDTO в listOrder
+        listOrder.add(menuItemDTO);
+
+
+    }
+
+    responseOrderDTO.setListOrder(listOrder);
+    responseOrderDTO.setOrderPrice(orderPrice);
+    responseOrderDTO.setTimeCreate(savedOrder.getCreateOrderTime());
+
+    return responseOrderDTO;
 }
+
+    public Orders getOrderById(Long id) {
+
+    return ordersRepository.findById(id).orElseThrow();
+    }
+    public ResponseOrderDTO getAllOrderByUser() {
+        return null ;
+    }
+    public String payOrder(Long id) {
+    Orders order =  ordersRepository.findById(id).orElseThrow();
+        System.out.println(order);
+    order.setOrderStatus(OrderStatus.CUSTOMER_PAID);
+    ordersRepository.save(order);
+        return "Заказ успешно оплачен" ;
+    }
+
 //    public Orders createOrder(CreateOrderDTO orderDTO, Long customerId) {
 //        Orders order = new Orders();
 //        // Заполните поля заказа
