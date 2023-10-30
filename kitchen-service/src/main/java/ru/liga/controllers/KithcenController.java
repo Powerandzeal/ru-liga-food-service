@@ -1,12 +1,23 @@
 package ru.liga.controllers;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import ru.liga.models.Restaurant;
+import ru.liga.services.KitchenService;
+@RestController
+@RequiredArgsConstructor
 public class KithcenController {
+
+    private final KitchenService kitchenService;
 //    // Create
-//    @PostMapping
-//    public ResponseEntity<Restaurant> createRestaurant(@RequestBody Restaurant restaurant) {
-//        Restaurant createdRestaurant = restaurantService.createRestaurant(restaurant);
-//        return ResponseEntity.ok(createdRestaurant);
-//    }
+    @PostMapping
+    public ResponseEntity<Restaurant> createRestaurant(@RequestBody Restaurant restaurant) {
+        Restaurant createdRestaurant = kitchenService.createRestaurant(restaurant);
+        return ResponseEntity.ok(createdRestaurant);
+    }
 //
 //    // Read (Retrieve) all
 //    @GetMapping

@@ -16,4 +16,8 @@ public class KitchenService {
     public void deleteKithcen() {
 
     }
+
+    public void updateMenu() {
+
+    }
 }

@@ -1,5 +1,7 @@
 package ru.liga.services;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.liga.DTO.ItemsDto;
@@ -28,40 +30,10 @@ public class OrderService {
    private final RestaurantMenuItemsRepository restaurantMenuItemsRepository;
    private final CustomerRepository customerRepository;
    private final OrderItemsRepository orderItemsRepository;
-//    public Orders createOrder(CreateOrderDTO orderDTO,Long customerId) {
-//
-//        Orders order = new Orders();
-//
-//        order.setCustomer(customerRepository.findById(customerId).orElseThrow());
-//
-//        List<OrderItems> listItems = new ArrayList<>();
-//        List<ItemsDto > list1 = orderDTO.getItems();
-//        System.out.println(list1);
-//
-//        for (int i = 0; i < orderDTO.getItems().size(); i++) {
-//            System.out.println("размер количество позиций в заказе "+ orderDTO.getItems().size());
-//            OrderItems orderItems = new OrderItems();
-//            orderItems.setQuantity(list1.get(i).getQuantity());
-//            orderItems.setPrice((int)calculateSumOrder(orderDTO));
-//            orderItems.setRestaurantMenuItem(restaurantMenuItemsRepository.findById(list1.get(i).getRestaurantMenuItemsId()).orElseThrow());
-//            orderItems.setOrderEntity(order);
-//            orderItemsRepository.save(orderItems);
-//            System.out.println(restaurantMenuItemsRepository.findById(list1.get(i).getRestaurantMenuItemsId()).orElseThrow());
-//            RestaurantMenuItem restaurantMenuItem1 = restaurantMenuItemsRepository.findById(list1.get(i).getRestaurantMenuItemsId()).orElseThrow();
-//            System.out.println(restaurantMenuItem1.toString());
-////            orderItems.setRestaurantMenuItemId(restaurantMenuItem1);
-//            listItems.add(orderItems);
-//        }
-//        System.out.println(calculateSumOrder(orderDTO));
-//
-////        order.setOrderItemsList(orderDTO.getItems());
-//        order.setCreateOrderTime(Timestamp.valueOf(LocalDateTime.now()));
-//
-//        order.setOrderStatus(OrderStatus.CUSTOMER_CREATED);
-//        order.setRestaurant(restaurantRepository.findById(orderDTO.getRestaurantId()).orElseThrow());
-//
-//        return ordersRepository.save(order);
-//    }
+
+   private final RabitMqProducer rabitMqProducer;
+   private final ObjectMapper objectMapper;
+
 public ResponseOrderDTO createOrder(CreateOrderDTO orderDTO, Long customerId) {
     Orders order = new Orders();
     // Заполните поля заказа
@@ -120,6 +92,14 @@ public ResponseOrderDTO createOrder(CreateOrderDTO orderDTO, Long customerId) {
 
     return responseOrderDTO;
 }
+    private void sendOrderInfoViaRabbitMQ(Orders order) {
+        try {
+            String orderInfoInLine = objectMapper.writeValueAsString(order);
+            rabitMqProducer.sendMessage(orderInfoInLine, "your_queue_name");
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+    }
 
     public Orders getOrderById(Long id) {
 
