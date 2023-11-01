@@ -115,41 +115,15 @@ public ResponseOrderDTO createOrder(CreateOrderDTO orderDTO, Long customerId) {
     ordersRepository.save(order);
         return "Заказ успешно оплачен" ;
     }
+    public String cancelOrder(Long id) {
+        Orders order =  ordersRepository.findById(id).orElseThrow();
+        System.out.println(order);
+        order.setOrderStatus(OrderStatus.CUSTOMER_CANCELLED);
+        ordersRepository.save(order);
+        return "Заказ Отменен" ;
+    }
 
-//    public Orders createOrder(CreateOrderDTO orderDTO, Long customerId) {
-//        Orders order = new Orders();
-//        // Заполните поля заказа
-//
-//        order.setCustomer(customerRepository.findById(customerId).orElseThrow());
-//
-//        List<OrderItems> listItems = new ArrayList<>();
-//        List<ItemsDto> list1 = orderDTO.getItems();
-//
-//        for (int i = 0; i < orderDTO.getItems().size(); i++) {
-//            OrderItems orderItems = new OrderItems();
-//            orderItems.setQuantity(list1.get(i).getQuantity());
-//            orderItems.setPrice((int) calculateSumOrder(orderDTO));
-//            orderItems.setRestaurantMenuItem(restaurantMenuItemsRepository.findById(list1.get(i).getRestaurantMenuItemsId()).orElseThrow());
-//            orderItems.setOrderEntity(order); // Установите заказ для элемента заказа
-//            listItems.add(orderItems);
-//        }
-//
-//        order.setCreateOrderTime(Timestamp.valueOf(LocalDateTime.now()));
-//        order.setOrderStatus(OrderStatus.CUSTOMER_CREATED);
-//        order.setRestaurant(restaurantRepository.findById(orderDTO.getRestaurantId()).orElseThrow());
-//        order.setPrice(calculateSumOrder(orderDTO));
-//
-//        //  сохранине заказа
-//        Orders savedOrder = ordersRepository.save(order);
-//
-//        //  сохранение элемента заказа
-//        for (OrderItems orderItem : listItems) {
-//            orderItem.setOrderEntity(savedOrder);
-//            orderItemsRepository.save(orderItem);
-//        }
-//
-//        return savedOrder;
-//    }
+
 
     public double calculateSumOrder(CreateOrderDTO orderDTO){
         double sum = 0;
@@ -162,17 +136,7 @@ public ResponseOrderDTO createOrder(CreateOrderDTO orderDTO, Long customerId) {
         }
         return sum;
     }
-//    public double calculateSumOrder(CreateOrderDTO orderDTO){
-//        double sum = 0;
-//        List<ItemsDto > list1 = orderDTO.getItems();
-//
-//        for (ItemsDto val: list1) {
-//
-//            double price = restaurantMenuItemsRepository.findById(val.getRestaurantMenuItemsId()).orElseThrow().getPrice();
-//            sum  += val.getQuantity() * price;
-//        }
-//        return sum;
-//    }
+
 
     public List<Restaurant> getAllRestaurant() {
         System.out.println("insideGetAllRestaurant");
@@ -199,7 +163,7 @@ public ResponseOrderDTO createOrder(CreateOrderDTO orderDTO, Long customerId) {
             RestourantMenuItemDTO restourantMenuItemDTO = new RestourantMenuItemDTO();
             restourantMenuItemDTO.setDescription(v.getDescription());
             restourantMenuItemDTO.setName(v.getName());
-            restourantMenuItemDTO.setImage(v.getImage());
+//            restourantMenuItemDTO.setImage(v.getImage());
             restourantMenuItemDTO.setPrice(v.getPrice());
             restourantMenuItemDTO.setId(v.getId());
 

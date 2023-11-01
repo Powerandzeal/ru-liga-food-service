@@ -1,6 +1,7 @@
 package ru.liga.controllers;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.liga.dto.RestourantMenuItemDTO;
@@ -12,11 +13,18 @@ import ru.liga.services.MenuItemsService;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/kitchen")
+@Slf4j
 public class KithcenController {
 
     private final KitchenService kitchenService;
     private final MenuItemsService menuItemsService;
-//    // Create
+
+    @PostMapping("/accept/{orderId}")
+    public void acceptOrder(@RequestParam Long orderId) {
+        log.info("request to accept order by id ", orderId);
+        kitchenService.acceptOrder(orderId);
+    }
+
     @PostMapping("/createRestaurant")
     public ResponseEntity<Restaurant> createRestaurant(@RequestBody Restaurant restaurant) {
         Restaurant createdRestaurant = kitchenService.createRestaurant(restaurant);
@@ -25,10 +33,11 @@ public class KithcenController {
 
     @PostMapping("/createMenuItems{id}")
     public ResponseEntity<RestaurantMenuItem> createMenuItems(@RequestBody RestourantMenuItemDTO restaurantMenuItem
-            ,@RequestParam Long id) {
+            , @RequestParam Long id) {
         ;
-        return ResponseEntity.ok(menuItemsService.createMenuItem(id,restaurantMenuItem));
+        return ResponseEntity.ok(menuItemsService.createMenuItem(id, restaurantMenuItem));
     }
+
     @DeleteMapping("/deleteMenuItems")
     public ResponseEntity<String> deleteMenuItems(@RequestParam Long id) {
         menuItemsService.deleteMenuItem(id);

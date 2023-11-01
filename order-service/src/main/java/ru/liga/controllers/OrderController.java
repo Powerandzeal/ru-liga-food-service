@@ -1,6 +1,9 @@
 package ru.liga.controllers;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.core.AmqpTemplate;
+//import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.liga.dto.CreateOrderDTO;
@@ -11,18 +14,29 @@ import ru.liga.models.Orders;
 import ru.liga.models.Restaurant;
 import ru.liga.models.RestaurantMenuItem;
 import ru.liga.services.OrderService;
+import ru.liga.services.ServiceFeignClient;
 
 import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@Slf4j
 public class OrderController {
+    private final AmqpTemplate amqpTemplate;
 
     private final OrderService orderService;
+
+    private final ServiceFeignClient serviceFeignClient;
     @PostMapping("/createOrder{customerId}")
     public ResponseEntity<ResponseOrderDTO> createOrder(@RequestBody CreateOrderDTO createOrderDTO, @RequestParam Long customerId) {
+        String message = "запрос на создание заказа";
+        log.info("createOrderFrom customer id = " + customerId);
 
-        return ResponseEntity.ok(orderService.createOrder(createOrderDTO,customerId));
+//        serviceFeignClient.sendNotification("Пользователь id= " +customerId+ "сделали заказ =" );
+//        amqpTemplate.convertAndSend("myQueue",message);
+        ResponseOrderDTO responseOrderDTO = orderService.createOrder(createOrderDTO,customerId);
+        serviceFeignClient.sendNotification(responseOrderDTO);
+        return ResponseEntity.ok(responseOrderDTO);
 
     }
     @GetMapping("/getAllRestaurant")
@@ -54,6 +68,11 @@ public class OrderController {
     public ResponseEntity<String > payOrder(@RequestParam Long orderId) {
 
         return ResponseEntity.ok( orderService.payOrder(orderId));
+    }
+    @PutMapping("/cancelOrder{id}")
+    public ResponseEntity<String > cancelOrder(@RequestParam Long orderId) {
+
+        return ResponseEntity.ok( orderService.cancelOrder(orderId));
     }
 //
 //    // Read (Retrieve) all
