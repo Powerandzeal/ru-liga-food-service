@@ -1,4 +1,4 @@
-package ru.liga.dto;
+package ru.liga.DTO;
 
 import lombok.Data;
 

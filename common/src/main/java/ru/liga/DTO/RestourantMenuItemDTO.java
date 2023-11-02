@@ -1,4 +1,4 @@
-package ru.liga.dto;
+package ru.liga.DTO;
 
 import lombok.Data;
 
@@ -7,7 +7,7 @@ public class RestourantMenuItemDTO {
     Long id;
     String name;
     double price;
-    byte [] image;
+//    byte [] image;
     String description;
 
 }

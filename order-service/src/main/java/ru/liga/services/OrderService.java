@@ -6,10 +6,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.liga.DTO.ItemsDto;
 import ru.liga.Enum.OrderStatus;
-import ru.liga.dto.CreateOrderDTO;
-import ru.liga.dto.ResponseOrderDTO;
-import ru.liga.dto.RestourantMenuDTO;
-import ru.liga.dto.RestourantMenuItemDTO;
+import ru.liga.DTO.CreateOrderDTO;
+import ru.liga.DTO.ResponseOrderDTO;
+import ru.liga.DTO.RestourantMenuDTO;
+import ru.liga.DTO.RestourantMenuItemDTO;
 import ru.liga.models.OrderItems;
 import ru.liga.models.Orders;
 import ru.liga.models.Restaurant;
@@ -20,7 +20,6 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -89,16 +88,25 @@ public ResponseOrderDTO createOrder(CreateOrderDTO orderDTO, Long customerId) {
     responseOrderDTO.setListOrder(listOrder);
     responseOrderDTO.setOrderPrice(orderPrice);
     responseOrderDTO.setTimeCreate(savedOrder.getCreateOrderTime());
+    sendOrder(responseOrderDTO);
 
     return responseOrderDTO;
 }
-    private void sendOrderInfoViaRabbitMQ(Orders order) {
+    public String sendOrder(ResponseOrderDTO order) {
+        String carInfoInLine = tryToSerialyzeMessageAsString(order);
+        if (order.getOrderPrice()> 0) {
+            rabitMqProducer.sendMessage(carInfoInLine, "order.it");
+        }
+        return "Cообщение отправлено";
+    }
+    public String tryToSerialyzeMessageAsString(ResponseOrderDTO orderDTO) {
+        String carInfoInLine = null;
         try {
-            String orderInfoInLine = objectMapper.writeValueAsString(order);
-            rabitMqProducer.sendMessage(orderInfoInLine, "your_queue_name");
+            carInfoInLine = objectMapper.writeValueAsString(orderDTO);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
+        return carInfoInLine;
     }
 
     public Orders getOrderById(Long id) {

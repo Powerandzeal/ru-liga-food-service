@@ -28,8 +28,8 @@ public class Courier {
     @Column(name = "coordinate")
     private String coordinate;
 
-    @OneToMany(mappedBy = "courier")
-    private List<Orders> orders;
+//    @OneToMany(mappedBy = "courier")
+//    private List<Orders> orders;
 
 
 }

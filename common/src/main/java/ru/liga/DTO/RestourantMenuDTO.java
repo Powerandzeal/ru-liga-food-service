@@ -1,8 +1,7 @@
-package ru.liga.dto;
+package ru.liga.DTO;
 
 import lombok.Data;
-import ru.liga.Enum.KitchenStatusOrder;
-import ru.liga.models.RestaurantMenuItem;
+import ru.liga.DTO.RestourantMenuItemDTO;
 
 import java.util.List;
 

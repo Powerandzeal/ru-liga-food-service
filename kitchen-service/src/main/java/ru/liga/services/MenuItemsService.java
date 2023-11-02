@@ -2,7 +2,7 @@ package ru.liga.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.liga.dto.RestourantMenuItemDTO;
+import ru.liga.DTO.RestourantMenuItemDTO;
 import ru.liga.models.RestaurantMenuItem;
 import ru.liga.repositories.RestaurantMenuItemsRepository;
 import ru.liga.repositories.RestaurantRepository;

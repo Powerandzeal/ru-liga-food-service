@@ -8,5 +8,6 @@ import ru.liga.models.Orders;
 import java.util.List;
 
 public interface OrderRepository extends JpaRepository<Orders,Long> {
-    List<Orders> getOrdersByStatusOrder(DeliveryStatusOrder statusOrder);
+    List<Orders> getOrdersByOrderStatus(DeliveryStatusOrder statusOrder);
+    List<Orders> getOrdersByCourier_Id(Long id);
 }

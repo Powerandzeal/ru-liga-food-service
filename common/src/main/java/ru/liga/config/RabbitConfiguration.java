@@ -25,6 +25,7 @@ public class RabbitConfiguration {
         CachingConnectionFactory cachingConnectionFactory = new CachingConnectionFactory("localhost");
         cachingConnectionFactory.setUsername("guest");
         cachingConnectionFactory.setPassword("guest");
+        cachingConnectionFactory.setPort(5672);
         return cachingConnectionFactory;
     }
 

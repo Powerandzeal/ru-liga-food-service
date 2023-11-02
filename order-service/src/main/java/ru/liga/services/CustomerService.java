@@ -2,13 +2,12 @@ package ru.liga.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.liga.dto.RegistrationCustomerDTO;
+import ru.liga.DTO.RegistrationCustomerDTO;
 import ru.liga.models.Customers;
 import ru.liga.models.Orders;
 import ru.liga.repositoryes.CustomerRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor

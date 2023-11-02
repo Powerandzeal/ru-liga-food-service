@@ -21,11 +21,6 @@ public class OrderController {
 
     private final OrderStatus orderStatus;
 
-//    @PostMapping
-//    public ResponseEntity<Orders> createOrder(@ReCreateOrderDTO orderDTO) {
-//        orderStatus.createOrder();
-//        return null;
-//    }
 
     @GetMapping("/getCourierByStatus")
     public ResponseEntity<List<Orders>> getOrderByStatus(@RequestParam String status) {
