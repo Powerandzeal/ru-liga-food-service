@@ -1,4 +1,4 @@
-package ru.liga.controllers;
+package ru.liga;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springdoc.api.ErrorMessage;
