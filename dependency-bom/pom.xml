@@ -27,7 +27,9 @@
         <mybatis.version.spring>2.3.0</mybatis.version.spring>
         <feign.version>3.1.8</feign.version>
         <spring.cloud.dependency>2021.0.4</spring.cloud.dependency>
-<!--        <mybatis.version>3.5.13</mybatis.version>-->
+        <spring.security.test>6.1.4</spring.security.test>
+
+        <!--        <mybatis.version>3.5.13</mybatis.version>-->
 
     </properties>
 
@@ -158,11 +160,12 @@
             <!--			<artifactId>spring-rabbit-test</artifactId>-->
             <!--			<scope>test</scope>-->
             <!--		</dependency>-->
-            <!--		<dependency>-->
-            <!--			<groupId>org.springframework.security</groupId>-->
-            <!--			<artifactId>spring-security-test</artifactId>-->
-            <!--			<scope>test</scope>-->
-            <!--		</dependency>-->
+            		<dependency>
+            			<groupId>org.springframework.security</groupId>
+            			<artifactId>spring-security-test</artifactId>
+                        <version>${spring.security.test}</version>
+            			<scope>test</scope>
+            		</dependency>
 
         </dependencies>
     </dependencyManagement>

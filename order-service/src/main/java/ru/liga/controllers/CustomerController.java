@@ -8,6 +8,7 @@ import ru.liga.DTO.RegistrationCustomerDTO;
 import ru.liga.models.Customers;
 import ru.liga.services.CustomerService;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
@@ -21,7 +22,7 @@ public class CustomerController {
     )
     @PostMapping("/registrationCustomer")
     public ResponseEntity<?> createCustomer(
-            @RequestBody RegistrationCustomerDTO registrationCustomerDTO
+            @RequestBody @Valid RegistrationCustomerDTO registrationCustomerDTO
     ) {
         return ResponseEntity.ok(customerService.createCustomer(registrationCustomerDTO));
     }
@@ -45,9 +46,10 @@ public class CustomerController {
     )
     @PutMapping("/updateCustomer")
     public ResponseEntity<?> updateCustomer(
+            @RequestBody @Valid RegistrationCustomerDTO registrationCustomerDTO,
             @RequestParam Long customerId
     ) {
-        return ResponseEntity.ok(customerService.updateCustomerById(customerId));
+        return ResponseEntity.ok(customerService.updateCustomerById(customerId,registrationCustomerDTO));
     }
 
     // Удаление заказчика по его идентификатору.

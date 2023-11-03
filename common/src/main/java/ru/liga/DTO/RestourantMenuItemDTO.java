@@ -9,5 +9,7 @@ public class RestourantMenuItemDTO {
     double price;
 //    byte [] image;
     String description;
+    int quantity;
+
 
 }

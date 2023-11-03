@@ -9,6 +9,7 @@ import org.webjars.NotFoundException;
 import ru.liga.Enum.DeliveryStatusOrder;
 import ru.liga.DTO.CreateCourierDTO;
 import ru.liga.DTO.UpdateCourierDTO;
+import ru.liga.Enum.OrderStatus;
 import ru.liga.Exceptions.ValidationException;
 import ru.liga.models.Courier;
 import ru.liga.models.Orders;
@@ -67,6 +68,7 @@ public class CourierService {
 //            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 //        }
 //    }
+    //
     public ResponseEntity<Courier> getCourierById(Long courierId) {
         // Логирование действия
         log.info("Запрос информации о курьере с ID: {}", courierId);
@@ -74,6 +76,13 @@ public class CourierService {
         return ResponseEntity.ok(courierRepository.findById(courierId).orElseThrow(()->new
                 NotFoundException("Пользователь не найден")));
     }
+    //Варинат
+//    public ResponseEntity<Courier> getCourierById(Long courierId) {
+//        // Логирование действия
+//        log.info("Запрос информации о курьере с ID: {}", courierId);
+//
+//        return ResponseEntity.ok(courierRepository.findById(courierId).orElseThrow());
+//    }
 
 
 
@@ -143,5 +152,37 @@ public class CourierService {
         log.info("Запрос заказов для курьера с ID: {}", courierId);
 
         return orderRepository.getOrdersByCourier_Id(courierId);
+    }
+
+//    public List<Orders> getOrdersForDelivering() {
+//
+//    }
+
+    public Orders deliveryPicking (Long orderId,Long courierId) {
+        Courier courier = courierRepository.findById(courierId).orElseThrow(()->new
+                NotFoundException("Курьер не найден"));
+       Orders order = orderRepository.findById(orderId).orElseThrow(()->new
+                NotFoundException("Заказ не найден"));
+       order.setCourier(courier);
+        order.setOrderStatus(OrderStatus.DELIVERY_PICKING);
+        return orderRepository.save(order);
+    }
+    public Orders deliveryIsDelivering(Long orderId) {
+        Orders order = orderRepository.findById(orderId).orElseThrow(()->new
+                NotFoundException("Заказ не найден"));
+        order.setOrderStatus(OrderStatus.DELIVERY_DELIVERING);
+        return orderRepository.save(order);
+    }
+    public Orders deliveryIsFinished(Long orderId) {
+        Orders order = orderRepository.findById(orderId).orElseThrow(()->new
+                NotFoundException("Заказ не найден"));
+        order.setOrderStatus(OrderStatus.DELIVERY_COMPLETE);
+        return orderRepository.save(order);
+    }
+    public Orders deniedDelivery (Long orderId) {
+        Orders order = orderRepository.findById(orderId).orElseThrow(()->new
+                NotFoundException("Заказ не найден"));
+        order.setOrderStatus(OrderStatus.DELIVERY_DENIED);
+        return orderRepository.save(order);
     }
 }

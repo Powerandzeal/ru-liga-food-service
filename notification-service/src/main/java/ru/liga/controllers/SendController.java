@@ -12,4 +12,8 @@ public class SendController {
     public void sendNotification(@RequestBody ResponseOrderDTO notification) {
         System.out.println("Отправляем оповещением о созданом заказе " + notification);
     }
+    @PostMapping("/orderAcceptetForCustomer")
+    public void sendNotificationCustomer(@RequestBody ResponseOrderDTO notification) {
+        System.out.println("Ваш заказ был принят рестораном " + notification);
+    }
 }

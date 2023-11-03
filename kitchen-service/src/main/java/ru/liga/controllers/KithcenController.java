@@ -65,8 +65,16 @@ public class KithcenController {
                 @RequestParam Long orderId
         ) {
             log.info("Запрос на отмену заказа по идентификатору: {}", orderId);
-            kitchenService.cancelOrder(orderId);
+            kitchenService.deniedOrder(orderId);
             return "Заказ номер:" + orderId + " отменен рестораном";
+        }
+        @PutMapping("/orderIsDone/{orderId}")
+        public String orderIsDone(
+                @RequestParam Long orderId
+        ) {
+            log.info("Запрос: заказ готов заказа по идентификатору: {}", orderId);
+            kitchenService.orderIsDone(orderId);
+            return "Заказ номер:" + orderId + " готов, ищем курьера";
         }
 
         /**

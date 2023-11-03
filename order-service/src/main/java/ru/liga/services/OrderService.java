@@ -62,6 +62,7 @@ public ResponseOrderDTO createOrder(CreateOrderDTO orderDTO, Long customerId) {
     // Затем сохраните элементы заказа
     for (OrderItems orderItem : listItems) {
         orderItem.setOrderEntity(savedOrder);
+
         orderItemsRepository.save(orderItem);
     }
 
@@ -79,6 +80,7 @@ public ResponseOrderDTO createOrder(CreateOrderDTO orderDTO, Long customerId) {
          menuItemDTO.setId(orderItem.getRestaurantMenuItem().getId());
          menuItemDTO.setName(orderItem.getRestaurantMenuItem().getName());
          menuItemDTO.setPrice(orderItem.getRestaurantMenuItem().getPrice());
+         menuItemDTO.setQuantity(orderItem.getQuantity());
 //         Добавьте menuItemDTO в listOrder
         listOrder.add(menuItemDTO);
 
