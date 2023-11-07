@@ -132,6 +132,7 @@
                 <scope>compile</scope>
             </dependency>
 
+
             <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-feign -->
 <!--            <dependency>-->
 <!--                <groupId>org.springframework.cloud</groupId>-->

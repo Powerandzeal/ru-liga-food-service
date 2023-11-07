@@ -27,6 +27,7 @@ public class CourierService {
     private final CourierRepository courierRepository;
 
     private final OrderRepository orderRepository;
+    private final RabbitMqProducerDelivery rabbitMqProducerDelivery;
 
     /**
      * Создает нового курьера на основе переданных данных.
@@ -165,23 +166,28 @@ public class CourierService {
                 NotFoundException("Заказ не найден"));
        order.setCourier(courier);
         order.setOrderStatus(OrderStatus.DELIVERY_PICKING);
+        rabbitMqProducerDelivery.sendNotificationCustomerFromCourier("Заказ принят курьеров и направляется " +
+                "к вам.Ожидаемое время доставки через 1:15","courier.order");
         return orderRepository.save(order);
     }
     public Orders deliveryIsDelivering(Long orderId) {
         Orders order = orderRepository.findById(orderId).orElseThrow(()->new
-                NotFoundException("Заказ не найден"));
+                NotFoundException("Доставка в пути"));
         order.setOrderStatus(OrderStatus.DELIVERY_DELIVERING);
+        rabbitMqProducerDelivery.sendNotificationCustomerFromCourier("Заказ в пути","customer.courier");
         return orderRepository.save(order);
     }
     public Orders deliveryIsFinished(Long orderId) {
         Orders order = orderRepository.findById(orderId).orElseThrow(()->new
-                NotFoundException("Заказ не найден"));
+                NotFoundException("Доставка завершена"));
         order.setOrderStatus(OrderStatus.DELIVERY_COMPLETE);
+        rabbitMqProducerDelivery.sendNotificationCustomerFromCourier("Доставка заказа №"+orderId+" завершена" +
+                "","customer.courier");
         return orderRepository.save(order);
     }
     public Orders deniedDelivery (Long orderId) {
         Orders order = orderRepository.findById(orderId).orElseThrow(()->new
-                NotFoundException("Заказ не найден"));
+                NotFoundException("Заказ был отменен курьером,ищем другого курьера"));
         order.setOrderStatus(OrderStatus.DELIVERY_DENIED);
         return orderRepository.save(order);
     }

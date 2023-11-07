@@ -5,16 +5,16 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
-
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class RabitMqProducer {
-
+public class RabbitMqProducerDelivery {
     private final RabbitTemplate rabbitTemplate;
 
-    public void sendMessage(String message, String routingKey) {
+    public void sendNotificationCustomerFromCourier(String message, String routingKey) {
         rabbitTemplate.convertAndSend("directExchange", routingKey, message);
-        log.info("Order has been sanded to Kitchen from RabbitMq");
+
+        log.info("Courier has been sanded notification by customer  RabbitMq");
     }
+
 }

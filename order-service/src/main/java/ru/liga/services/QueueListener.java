@@ -21,4 +21,15 @@ public class QueueListener {
         System.out.println();
 
     }
+    @SneakyThrows
+    @RabbitListener(queues = "NotificationCustomerFromCourier")
+    public void processMyQueue1(String message) {
+        ObjectMapper objectMapper = new ObjectMapper();
+//        ResponseOrderDTO messageModel = objectMapper.readValue(message, ResponseOrderDTO.class);
+
+        System.out.println("Оповещение от курьера ");
+        System.out.println("Received from NotificationCourier : " + message);
+        System.out.println();
+
+    }
 }
