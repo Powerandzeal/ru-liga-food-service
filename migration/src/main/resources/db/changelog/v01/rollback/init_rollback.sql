@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS Orders;
 DROP TABLE IF EXISTS Customers;
 
 -- Роллбек для таблицы "Currier"
-DROP TABLE IF EXISTS Currier;
+DROP TABLE IF EXISTS Couriers;
 
 -- Роллбек для таблицы "Restaurants"
 DROP TABLE IF EXISTS Restaurants;

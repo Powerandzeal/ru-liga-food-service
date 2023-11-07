@@ -3,27 +3,34 @@ package ru.liga.models;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Data
-@Table
+@Table(name = "restaurant_menu_items")
 public class RestaurantMenuItem {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name ="restaurant_menu_item_id" )
     Long id;
 
-    @Column(name= "id_restaurant")
-            @ManyToOne
-    Restaurant restaurantId;
+    @ManyToOne
+    @JoinColumn(name = "id_restaurant")
+    Restaurant restaurant;
 
-    @Column(name= "namt_items")
+    @Column(name= "name_items")
     String name;
 
     @Column(name= "price")
-    int price;
+    double price;
+
+//    @Lob // Это аннотация для больших объектов (large objects)
+//    @Basic(fetch = FetchType.LAZY) // Добавляем fetch-стратегию, если это подходит для вашего случая
+//    @Column(name= "image", columnDefinition = "bytea")
+//    byte[] image;
 
     @Column(name= "description")
-    byte [] image;
-
-    @Column(name= "image")
     String description;
+
+
 }

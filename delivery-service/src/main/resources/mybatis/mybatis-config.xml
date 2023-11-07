@@ -9,7 +9,7 @@
         <setting name="logImpl" value="LOG4J"/>
     </settings>
     <environments default="development"><!--в данном блоке настраиваются подключения к БД-->
-        <environment id="development">
+        <environment customer_id="development">
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="org.postgresql.Driver"/>

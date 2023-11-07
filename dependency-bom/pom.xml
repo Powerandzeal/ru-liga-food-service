@@ -25,6 +25,11 @@
         <java.version>11</java.version>
         <swagger.version>1.6.12</swagger.version>
         <mybatis.version.spring>2.3.0</mybatis.version.spring>
+        <feign.version>3.1.8</feign.version>
+        <spring.cloud.dependency>2021.0.4</spring.cloud.dependency>
+        <spring.security.test>6.1.4</spring.security.test>
+
+        <!--        <mybatis.version>3.5.13</mybatis.version>-->
 
     </properties>
 
@@ -108,6 +113,33 @@
                 <optional>true</optional>
                 <version>${lombok.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-validation</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-openfeign</artifactId>
+                <version>${feign.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-dependencies -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud.dependency}</version>
+                <type>pom</type>
+                <scope>compile</scope>
+            </dependency>
+
+
+            <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-feign -->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.cloud</groupId>-->
+<!--                <artifactId>spring-cloud-starter-feign</artifactId>-->
+<!--                <version>${feign.version}</version>-->
+<!--            </dependency>-->
+
             <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
 <!--            <dependency>-->
 <!--                <groupId>org.mybatis.spring.boot</groupId>-->
@@ -129,11 +161,12 @@
             <!--			<artifactId>spring-rabbit-test</artifactId>-->
             <!--			<scope>test</scope>-->
             <!--		</dependency>-->
-            <!--		<dependency>-->
-            <!--			<groupId>org.springframework.security</groupId>-->
-            <!--			<artifactId>spring-security-test</artifactId>-->
-            <!--			<scope>test</scope>-->
-            <!--		</dependency>-->
+            		<dependency>
+            			<groupId>org.springframework.security</groupId>
+            			<artifactId>spring-security-test</artifactId>
+                        <version>${spring.security.test}</version>
+            			<scope>test</scope>
+            		</dependency>
 
         </dependencies>
     </dependencyManagement>
