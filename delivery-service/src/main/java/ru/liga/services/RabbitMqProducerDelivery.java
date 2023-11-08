@@ -16,5 +16,10 @@ public class RabbitMqProducerDelivery {
 
         log.info("Courier has been sanded notification by customer  RabbitMq");
     }
+    public void sendNotificationKithcen(String message, String routingKey) {
+        rabbitTemplate.convertAndSend("directExchange", routingKey, message);
+
+        log.info("Courier has been sanded notification by kithen  RabbitMq");
+    }
 
 }

@@ -18,4 +18,10 @@ public class RabitMqProducerKitchen {
 
         log.info("Order has been sanded notification by customer  RabbitMq");
     }
+    public void sendNotificationForCouriers(String message, String routingKey) {
+        rabbitTemplate.convertAndSend("directExchange", routingKey, message);
+
+        log.info("Order has been sanded notification by customer  RabbitMq");
+    }
+
 }

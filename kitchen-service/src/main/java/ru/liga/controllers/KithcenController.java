@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.liga.DTO.RestaurantDto;
 import ru.liga.DTO.RestourantMenuItemDTO;
 import ru.liga.models.Restaurant;
 import ru.liga.models.RestaurantMenuItem;
@@ -22,15 +23,6 @@ public class KithcenController {
     private final MenuItemsService menuItemsService;
 
 
-
-    @RestController
-    @RequiredArgsConstructor
-    @RequestMapping("/kitchen")
-    public class KitchenController {
-
-        private final KitchenService kitchenService;
-        private final MenuItemsService menuItemsService;
-
         /**
          * Принимает заказ по его идентификатору.
          *
@@ -39,7 +31,7 @@ public class KithcenController {
          */
         @Operation(
                 summary = "Принять заказ",
-                description = "Принимает заказ по его идентификатору."
+                description = "Принимает заказ по его идентификатору и отправляет уведомление."
         )
         @PutMapping("/acceptOrder/{orderId}")
         public String acceptOrder(
@@ -58,7 +50,7 @@ public class KithcenController {
          */
         @Operation(
                 summary = "Отменить заказ",
-                description = "Отменяет заказ по его идентификатору."
+                description = "Отменяет заказ по его идентификатору и отправляет уведомление."
         )
         @PutMapping("/deniedOrder/{orderId}")
         public String deniedOrder(
@@ -68,6 +60,10 @@ public class KithcenController {
             kitchenService.deniedOrder(orderId);
             return "Заказ номер:" + orderId + " отменен рестораном";
         }
+    @Operation(
+            summary = "Заказ готов",
+            description = "Меняет статус заказа на приготовлен и отправляет уведомление."
+    )
         @PutMapping("/orderIsDone/{orderId}")
         public String orderIsDone(
                 @RequestParam Long orderId
@@ -126,11 +122,11 @@ public class KithcenController {
                 description = "Создает новый ресторан."
         )
         @PostMapping("/createRestaurant")
-        public ResponseEntity<Restaurant> createRestaurant(
-                @RequestBody Restaurant restaurant
+        public ResponseEntity<RestaurantDto> createRestaurant(
+                @RequestBody RestaurantDto restaurant
         ) {
-            Restaurant createdRestaurant = kitchenService.createRestaurant(restaurant);
-            return ResponseEntity.ok(createdRestaurant);
+            ;
+            return ResponseEntity.ok(kitchenService.createRestaurant(restaurant));
         }
 
         /**
@@ -226,6 +222,6 @@ public class KithcenController {
             kitchenService.deleteRestaurant(restaurantId);
             return ResponseEntity.noContent().build();
         }
-    }
+
 
 }

@@ -25,4 +25,33 @@ public class RoutingMqConfig {
         return new Declarables(queueDirectFirst, directExchange,
                 BindingBuilder.bind(queueDirectFirst).to(directExchange).with("courier.order"));
     }
+    @Bean
+    public Declarables myQueue() {
+        Queue queueDirectFirst = new Queue("QueueOrder", false);
+        DirectExchange directExchange = new DirectExchange("directExchange");
+
+        return new Declarables(queueDirectFirst, directExchange,
+                BindingBuilder.bind(queueDirectFirst).to(directExchange).with("order.it"));
+    }
+    @Bean
+    public Declarables queueForCourier() {
+        Queue queueDirectFirst = new Queue("QueueOrderForCourier", false);
+        DirectExchange directExchange = new DirectExchange("directExchange");
+
+        return new Declarables(queueDirectFirst, directExchange,
+                BindingBuilder.bind(queueDirectFirst).to(directExchange).with("order.courier"));
+    }
+
+//@Bean
+//public Declarables myQueueWithMultipleRoutingKeys() {
+//    Queue queueDirectFirst = new Queue("MyQueue", false);
+//    DirectExchange directExchange = new DirectExchange("directExchange");
+//
+//    return new Declarables(
+//            queueDirectFirst, directExchange,
+//            BindingBuilder.bind(queueDirectFirst).to(directExchange).with("order.customer"),
+//            BindingBuilder.bind(queueDirectFirst).to(directExchange).with("courier.order"),
+//            BindingBuilder.bind(queueDirectFirst).to(directExchange).with("order.it")
+//    );
+//}
 }

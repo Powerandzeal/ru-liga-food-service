@@ -25,6 +25,10 @@ public class Restaurant {
     @Enumerated(EnumType.STRING)
     KitchenStatusOrder kitchenStatusOrder;
 
+    @OneToOne
+    @JoinColumn(name = "restaurant_user_id")
+    private Users users;
+
 //    @OneToMany(mappedBy = "restaurant")
 //    List<RestaurantMenuItem> restaurantMenuItem;
 }

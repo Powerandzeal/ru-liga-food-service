@@ -25,4 +25,17 @@ public class QueueListener {
         System.out.println();
 
     }
+    @SneakyThrows
+    @RabbitListener(queues = "QueueOrder")
+    public void processMyQueue2(String message) {
+
+
+        System.out.println("Оповещение от курьера ");
+        System.out.println("Received from NotificationOrder : " + message);
+        System.out.println();
+
+
+        System.out.println();
+
+    }
 }

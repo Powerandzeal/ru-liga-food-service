@@ -6,16 +6,22 @@ import javax.validation.constraints.NotBlank;
 
 @Data
 public class RegistrationCustomerDTO {
+
+    @NotBlank
+    String phone;
+
     @NotBlank
     String name;
 
     @NotBlank
-    String phone;
+    private String password;
+
 
     @NotBlank
     String email;
 
     @NotBlank
     String address;
+
 
 }

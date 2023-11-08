@@ -12,5 +12,7 @@ public class CreateCourierDTO {
     @NotBlank
     private String phonenumber;
     @NotBlank
+    private String password;
+    @NotBlank
     private String coordinate;
 }

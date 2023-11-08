@@ -1,6 +1,7 @@
 package ru.liga.models;
 
 import lombok.Data;
+
 import ru.liga.Enum.DeliveryStatusOrder;
 
 import javax.persistence.*;
@@ -28,8 +29,8 @@ public class Courier {
     @Column(name = "coordinate")
     private String coordinate;
 
-//    @OneToMany(mappedBy = "courier")
-//    private List<Orders> orders;
-
+    @OneToOne
+    @JoinColumn(name = "courier_user_id")
+    private Users users;
 
 }

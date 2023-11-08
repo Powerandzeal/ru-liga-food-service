@@ -1,6 +1,7 @@
 package ru.liga.models;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 import ru.liga.Enum.DeliveryStatusOrder;
 import ru.liga.Enum.OrderStatus;
 
@@ -18,6 +19,9 @@ public class Orders {
     @Column(name = "order_id")
     private Long id;
 
+//    @GeneratedValue(generator = "uuid")
+//    @GenericGenerator(name = "uuid", strategy = "uuid")
+//    @Column(name = "order_id",unique = true)
     @ManyToOne
     @JoinColumn(name = "id_customer")
     private Customers customer;

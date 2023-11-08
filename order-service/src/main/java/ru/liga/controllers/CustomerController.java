@@ -2,17 +2,21 @@ package ru.liga.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.liga.DTO.RegistrationCustomerDTO;
 import ru.liga.models.Customers;
 import ru.liga.services.CustomerService;
 
+import javax.annotation.security.PermitAll;
 import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
+@Slf4j
+@RequestMapping("/customer")
 public class CustomerController {
     private final CustomerService customerService;
     // Создание нового заказчика.
@@ -20,10 +24,12 @@ public class CustomerController {
             summary = "Зарегистрировать пользователя",
             description = "Создает нового заказчика."
     )
-    @PostMapping("/registrationCustomer")
-    public ResponseEntity<?> createCustomer(
+
+    @PostMapping()
+    public ResponseEntity<Customers> createCustomer(
             @RequestBody @Valid RegistrationCustomerDTO registrationCustomerDTO
     ) {
+        log.info("Создание пользователя");
         return ResponseEntity.ok(customerService.createCustomer(registrationCustomerDTO));
     }
 
@@ -32,7 +38,7 @@ public class CustomerController {
             summary = "Получить заказчика по идентификатору",
             description = "Получает информацию о заказчике по его идентификатору."
     )
-    @GetMapping("/getCustomerById")
+    @GetMapping("/getCustomerById{customerId}")
     public ResponseEntity<Customers> getCustomerById(
             @RequestParam Long customerId
     ) {

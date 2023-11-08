@@ -2,17 +2,23 @@ package ru.liga.services;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.liga.DTO.RegistrationCustomerDTO;
 import ru.liga.Exceptions.CustomerNotFoundException;
+import ru.liga.config.Role;
 import ru.liga.models.Customers;
+import ru.liga.models.Users;
 import ru.liga.repositoryes.CustomerRepository;
+import ru.liga.repositoryes.UserRepository;
 
 @Service
 @AllArgsConstructor
 @Slf4j
 public class CustomerService {
     private final CustomerRepository customerRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
 //    public Customers createCustomer(RegistrationCustomerDTO registrationCustomerDTO) {
 //        Customers customers = new Customers();
 //        customers.setAddress(registrationCustomerDTO.getAddress());
@@ -40,12 +46,22 @@ public class CustomerService {
      * @param registrationCustomerDTO Данные для создания нового клиента.
      * @return Созданный клиент.
      */
-    public Customers createCustomer(RegistrationCustomerDTO registrationCustomerDTO) {
+    public Customers createCustomer(RegistrationCustomerDTO registrationCustomerDTO)
+    {
+        log.info("Создание нового покупателя");
+
+        // Создаем и сохраняем пользователя
+        Users users = new Users();
+        users.setPassword(passwordEncoder.encode(registrationCustomerDTO.getPassword()));
+        users.setUsername(registrationCustomerDTO.getPhone());
+        users.setRoleUser(Role.CUSTOMER);
+        users = userRepository.save(users); // Сохраняем и получаем пользователя с id
+
         Customers customers = new Customers();
         customers.setAddress(registrationCustomerDTO.getAddress());
         customers.setPhone(registrationCustomerDTO.getPhone());
         customers.setEmail(registrationCustomerDTO.getEmail());
-
+        customers.setUsers(users);
         Customers savedCustomer = customerRepository.save(customers);
         log.info("Created customer with ID: {}", savedCustomer.getId());
         return savedCustomer;
@@ -91,6 +107,12 @@ public class CustomerService {
     public void deleteCustomerById(Long id) {
         customerRepository.deleteById(id);
         log.info("Deleted customer by ID: {}", id);
+    }
+    public Users findByPhoneNumber (String phoneNumber) {
+        // Логирование действия
+        log.info("поиск курьера по номеру телефона");
+
+        return userRepository.findByUsername(phoneNumber);
     }
 
     /**

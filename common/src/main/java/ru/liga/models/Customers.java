@@ -25,6 +25,10 @@ public class Customers {
     @Column(name = "address")
     private String address;
 
+    @OneToOne
+    @JoinColumn(name = "customer_user_id")
+    private Users users;
+
 //    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //    private List<Orders> orders;
 
