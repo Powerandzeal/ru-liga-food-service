@@ -70,7 +70,8 @@ Cтруктура:
 ```
       <br>
 <h2>Схема бд</h2>
-[image](https://github.com/Powerandzeal/ru-liga-food-service/assets/102437425/be470f2c-3f61-4baa-ac44-2ea7e6cc4f91)
+![image](https://github.com/Powerandzeal/ru-liga-food-service/assets/102437425/4749e292-9c38-4645-bfed-2fdee776c421)
+
 
 
 
