@@ -65,8 +65,15 @@ Cтруктура:
  2. Запустить скрипты инициализации с помощью команды mavenUpdate
   
     <br>docker run -lt --rm --name rabbitmq -p 5672:5672-p 15672:15672 rabbitmq:3-management    <br>
-  
+
+    ```properties
+# Настройки для подключения к базе данных PostgreSQL
+spring.datasource.url=jdbc:postgresql://localhost:5432/orderdb
+spring.datasource.username=your_username
+spring.datasource.password=your_password
+spring.jpa.hibernate.ddl-auto=update
 ## Схема бд ##
+
 ![image](https://github.com/Powerandzeal/ru-liga-food-service/assets/102437425/4749e292-9c38-4645-bfed-2fdee776c421)
 
 
