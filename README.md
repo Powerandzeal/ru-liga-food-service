@@ -63,13 +63,13 @@ Cтруктура:
 <h2> Запуск бд<h2>
   Для старта предварительно нужно запустить образы RabitMq и PostgreSql
 И добавьте в свой проект:
-```typescript
+```
   docker run -lt --rm --name rabbitmq -p 5672:5672
 -p 15672:15672 rabbitmq:3-management
  запускает RabitMq"
 ```
-    
-
+      <br>
+<h2>Схема бд</h2>
 ![image](https://github.com/Powerandzeal/ru-liga-food-service/assets/102437425/be470f2c-3f61-4baa-ac44-2ea7e6cc4f91)
 
 
