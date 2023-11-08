@@ -62,6 +62,12 @@ Cтруктура:
 - Подтверждение передачи заказа клиенту
 <h2> Запуск бд<h2>
   Для запуска в проекте используются RabitMq и Docker 
+  И добавьте в свой проект:
+```typescript
+import { hi } from "your-awesome-plugin-name";
+
+hi(); // Выведет в консоль "Привет!"
+```
   ``` docker docker run -lt --rm --name rabbitmq -p 5672:5672
 -p 15672:15672 rabbitmq:3-management
 ```
