@@ -68,10 +68,10 @@ Cтруктура:
 
     ```properties
 # Настройки для подключения к базе данных PostgreSQL
-spring.datasource.url=jdbc:postgresql://localhost:5432/orderdb
-spring.datasource.username=your_username
-spring.datasource.password=your_password
-spring.jpa.hibernate.ddl-auto=update
+- spring.datasource.url=jdbc:postgresql://localhost:5432/orderdb
+- spring.datasource.username=your_username
+- spring.datasource.password=your_password
+- spring.jpa.hibernate.ddl-auto=update
 ## Схема бд ##
 
 ![image](https://github.com/Powerandzeal/ru-liga-food-service/assets/102437425/4749e292-9c38-4645-bfed-2fdee776c421)
