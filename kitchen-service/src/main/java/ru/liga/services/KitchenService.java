@@ -1,9 +1,11 @@
 package ru.liga.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.liga.DTO.NotificationOrdersForCourier;
@@ -64,6 +66,7 @@ public class KitchenService {
         restaurantRepository.deleteById(restaurantId);
     }
     public void acceptOrder (Long id) {
+        log.info("подтверждение заказа ресторана");
         Orders order = ordersRepository.findById(id).orElseThrow();
         order.setOrderStatus(OrderStatus.KITCHEN_ACCEPTED);
         rabitMqProducerKitchen.sendNotificationCustomer("Ваш заказ №:"+id+" был принят рестораном и " +
@@ -72,6 +75,7 @@ public class KitchenService {
     }
 
     public void deniedOrder(Long id) {
+        log.info("отмена заказа ресторана");
         Orders order =  ordersRepository.findById(id).orElseThrow();
         System.out.println(order);
         order.setOrderStatus(OrderStatus.KITCHEN_DENIED);
@@ -81,6 +85,7 @@ public class KitchenService {
 
     }
     public void orderIsDone (Long id) {
+        log.info("заказ готов ");
         Orders order =  ordersRepository.findById(id).orElseThrow();
         System.out.println(order);
         order.setOrderStatus(OrderStatus.KITCHEN_PREPARING);
@@ -96,13 +101,15 @@ public class KitchenService {
         ordersRepository.save(order);
 
     }
-    public String sendOrder(Orders order) {
+    public String sendOrder( Orders order) {
+        log.info("Отправвление закаказа ");
         NotificationOrdersForCourier notificationOrdersForCourier = new NotificationOrdersForCourier();
         notificationOrdersForCourier.setAddresCustomer(order.getCustomer().getAddress());
         notificationOrdersForCourier.setAdressRestaurant(restaurantRepository.findByNameRestaurant(order.getRestaurant().getNameRestaurant()).getAddressKitchen());
         notificationOrdersForCourier.setIncome((order.getPrice()/4));
         notificationOrdersForCourier.setTimeDelivery(order.getTimeDelivery());
-        rabitMqProducerKitchen.sendNotificationForCouriers(tryToSerialyzeMessageAsString(notificationOrdersForCourier),"order.courier"); ;
+        rabitMqProducerKitchen.sendNotificationForCouriers(tryToSerialyzeMessageAsString(notificationOrdersForCourier),
+                "order.delivery"); ;
 
         return "Cообщение отправлено";
     }
@@ -116,11 +123,13 @@ public class KitchenService {
         return carInfoInLine;
     }
     public void kitchenIsOpen(Long id) {
+        log.info("ресторан открыт  ");
         Restaurant restaurant = restaurantRepository.findById(id).orElseThrow();
         restaurant.setKitchenStatusOrder(KitchenStatusOrder.KITCHEN_IS_OPEN);
         restaurantRepository.save(restaurant);
     }
     public void kitchenIsClose(Long id) {
+        log.info("ресторан закрыт  ");
         Restaurant restaurant = restaurantRepository.findById(id).orElseThrow();
         restaurant.setKitchenStatusOrder(KitchenStatusOrder.KITCHEN_IS_CLOSED);
         restaurantRepository.save(restaurant);

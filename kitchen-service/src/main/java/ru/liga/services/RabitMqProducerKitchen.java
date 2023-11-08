@@ -24,4 +24,5 @@ public class RabitMqProducerKitchen {
         log.info("Order has been sanded notification by customerforCourier  RabbitMq");
     }
 
+
 }

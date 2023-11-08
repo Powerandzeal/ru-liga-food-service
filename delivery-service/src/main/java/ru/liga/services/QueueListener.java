@@ -13,14 +13,28 @@ import ru.liga.DTO.ResponseOrderDTO;
 @RequiredArgsConstructor
 public class QueueListener {
 
+//    @SneakyThrows
+//    @RabbitListener(queues = "QueueOrderForCourier")
+//    public void processMyQueue(String message) {
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        NotificationOrdersForCourier messageModel = objectMapper.readValue(message, NotificationOrdersForCourier.class);
+//
+//        System.out.println("Новый заказ " );
+//        System.out.println("Received from QueueOrder Адресс ретсорана: " +  messageModel.getAdressRestaurant());
+//        System.out.println("Received from QueueOrder - оплата за доставку" + messageModel.getIncome());
+//        System.out.println("Received from QueueOrder - Адрес покупателя : " +  messageModel.getAddresCustomer());
+//        System.out.println("Received from QueueOrder - Ожимадаемое время доставки " + messageModel.getTimeDelivery()+ " минут" );
+//        System.out.println();
+//
+//    }
     @SneakyThrows
-    @RabbitListener(queues = "QueueOrderForCourier")
-    public void processMyQueue(String message) {
+    @RabbitListener(queues = "QueueOrderForCouriers")
+    public void processMyQueue2(String message) {
         ObjectMapper objectMapper = new ObjectMapper();
         NotificationOrdersForCourier messageModel = objectMapper.readValue(message, NotificationOrdersForCourier.class);
 
         System.out.println("Новый заказ " );
-        System.out.println("Received from QueueOrder Адресс ретсорана: " +  messageModel.getAdressRestaurant());
+        System.out.println("Received from QueueOrder Адресс ресторана: " +  messageModel.getAdressRestaurant());
         System.out.println("Received from QueueOrder - оплата за доставку" + messageModel.getIncome());
         System.out.println("Received from QueueOrder - Адрес покупателя : " +  messageModel.getAddresCustomer());
         System.out.println("Received from QueueOrder - Ожимадаемое время доставки " + messageModel.getTimeDelivery()+ " минут" );
