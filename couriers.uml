@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>912bfc75-c0e8-44e0-9f71-0371d59e7162.TABLE:postgres.public.couriers</OriginalElement>
+  <nodes>
+    <node x="117.0" y="514.0">912bfc75-c0e8-44e0-9f71-0371d59e7162.TABLE:postgres.public.order_items</node>
+    <node x="4.0" y="256.0">912bfc75-c0e8-44e0-9f71-0371d59e7162.TABLE:postgres.public.restaurant_menu_items</node>
+    <node x="-122.0" y="719.0">912bfc75-c0e8-44e0-9f71-0371d59e7162.TABLE:postgres.public.databasechangeloglock</node>
+    <node x="287.0" y="232.0">912bfc75-c0e8-44e0-9f71-0371d59e7162.TABLE:postgres.public.orders</node>
+    <node x="729.5699999999999" y="-188.0">912bfc75-c0e8-44e0-9f71-0371d59e7162.TABLE:postgres.public.databasechangelog</node>
+    <node x="33.56999999999999" y="10.0">912bfc75-c0e8-44e0-9f71-0371d59e7162.TABLE:postgres.public.restaurants</node>
+    <node x="254.33999999999997" y="-188.0">912bfc75-c0e8-44e0-9f71-0371d59e7162.TABLE:postgres.public.users</node>
+    <node x="490.56999999999994" y="-2.0">912bfc75-c0e8-44e0-9f71-0371d59e7162.TABLE:postgres.public.couriers</node>
+    <node x="279.57" y="10.0">912bfc75-c0e8-44e0-9f71-0371d59e7162.TABLE:postgres.public.customers</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="912bfc75-c0e8-44e0-9f71-0371d59e7162.TABLE:postgres.public.orders" target="912bfc75-c0e8-44e0-9f71-0371d59e7162.TABLE:postgres.public.restaurants" relationship="REFERENCES">
+      <point x="-63.0" y="-116.0" />
+      <point x="318.5" y="207.0" />
+      <point x="203.07" y="207.0" />
+      <point x="56.5" y="80.0" />
+    </edge>
+    <edge source="912bfc75-c0e8-44e0-9f71-0371d59e7162.TABLE:postgres.public.couriers" target="912bfc75-c0e8-44e0-9f71-0371d59e7162.TABLE:postgres.public.users" relationship="REFERENCES">
+      <point x="0.0" y="-92.0" />
+      <point x="587.5699999999999" y="-27.0" />
+      <point x="431.84000000000003" y="-27.0" />
+      <point x="71.0" y="68.0" />
+    </edge>
+    <edge source="912bfc75-c0e8-44e0-9f71-0371d59e7162.TABLE:postgres.public.restaurant_menu_items" target="912bfc75-c0e8-44e0-9f71-0371d59e7162.TABLE:postgres.public.restaurants" relationship="REFERENCES">
+      <point x="0.0" y="-92.0" />
+      <point x="122.5" y="207.0" />
+      <point x="90.07" y="207.0" />
+      <point x="-56.5" y="80.0" />
+    </edge>
+    <edge source="912bfc75-c0e8-44e0-9f71-0371d59e7162.TABLE:postgres.public.orders" target="912bfc75-c0e8-44e0-9f71-0371d59e7162.TABLE:postgres.public.couriers" relationship="REFERENCES">
+      <point x="63.0" y="-116.0" />
+      <point x="444.5" y="207.0" />
+      <point x="587.5699999999999" y="207.0" />
+      <point x="0.0" y="92.0" />
+    </edge>
+    <edge source="912bfc75-c0e8-44e0-9f71-0371d59e7162.TABLE:postgres.public.order_items" target="912bfc75-c0e8-44e0-9f71-0371d59e7162.TABLE:postgres.public.orders" relationship="REFERENCES">
+      <point x="61.0" y="-80.0" />
+      <point x="300.0" y="489.0" />
+      <point x="381.5" y="489.0" />
+      <point x="0.0" y="116.0" />
+    </edge>
+    <edge source="912bfc75-c0e8-44e0-9f71-0371d59e7162.TABLE:postgres.public.orders" target="912bfc75-c0e8-44e0-9f71-0371d59e7162.TABLE:postgres.public.customers" relationship="REFERENCES">
+      <point x="0.0" y="-116.0" />
+      <point x="381.5" y="207.0" />
+      <point x="375.07" y="207.0" />
+      <point x="0.0" y="80.0" />
+    </edge>
+    <edge source="912bfc75-c0e8-44e0-9f71-0371d59e7162.TABLE:postgres.public.restaurants" target="912bfc75-c0e8-44e0-9f71-0371d59e7162.TABLE:postgres.public.users" relationship="REFERENCES">
+      <point x="0.0" y="-80.0" />
+      <point x="146.57" y="-27.0" />
+      <point x="289.84" y="-27.0" />
+      <point x="-71.0" y="68.0" />
+    </edge>
+    <edge source="912bfc75-c0e8-44e0-9f71-0371d59e7162.TABLE:postgres.public.order_items" target="912bfc75-c0e8-44e0-9f71-0371d59e7162.TABLE:postgres.public.restaurant_menu_items" relationship="REFERENCES">
+      <point x="-61.0" y="-80.0" />
+      <point x="178.0" y="489.0" />
+      <point x="122.5" y="489.0" />
+      <point x="0.0" y="92.0" />
+    </edge>
+    <edge source="912bfc75-c0e8-44e0-9f71-0371d59e7162.TABLE:postgres.public.customers" target="912bfc75-c0e8-44e0-9f71-0371d59e7162.TABLE:postgres.public.users" relationship="REFERENCES">
+      <point x="0.0" y="-80.0" />
+      <point x="375.07" y="-27.0" />
+      <point x="360.84" y="-27.0" />
+      <point x="0.0" y="68.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.8400752587017873" showDependencies="false" x="405.0" y="333.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Columns</Category>
+    <Category>Comments</Category>
+    <Category>Key columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+
