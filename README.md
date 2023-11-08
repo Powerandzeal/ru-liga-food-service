@@ -66,9 +66,6 @@ Cтруктура:
     docker run -lt --rm --name rabbitmq -p 5672:5672
 -p 15672:15672 rabbitmq:3-management
       <br>
-  <br>
-   docker run --name habr-pg-13.3 -p 5432:5432 -e POSTGRES_USER=habrpguser -e POSTGRES_PASSWORD=pgpwd4habr -e POSTGRES_DB=habrdb -d postgres:13.3
-      <br>
   
 <h2>Схема бд</h2>
 ![image](https://github.com/Powerandzeal/ru-liga-food-service/assets/102437425/4749e292-9c38-4645-bfed-2fdee776c421)
