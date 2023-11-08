@@ -61,19 +61,13 @@ Cтруктура:
   <br>
 - Подтверждение передачи заказа клиенту
 <h2> Запуск бд<h2>
-  Для запуска в проекте используются RabitMq и Docker 
-  И добавьте в свой проект:
+  Для старта предварительно нужно запустить образы RabitMq и PostgreSql
+И добавьте в свой проект:
 ```typescript
-import { hi } from "your-awesome-plugin-name";
-
-hi(); // Выведет в консоль "Привет!"
-```
-  ``` docker docker run -lt --rm --name rabbitmq -p 5672:5672
+  docker run -lt --rm --name rabbitmq -p 5672:5672
 -p 15672:15672 rabbitmq:3-management
+ запускает RabitMq"
 ```
- docker docker run -lt --rm --name rabbitmq -p 5672:5672
--p 15672:15672 rabbitmq:3-management
-  <h2> Схема бд<h2>
     
 
 ![image](https://github.com/Powerandzeal/ru-liga-food-service/assets/102437425/be470f2c-3f61-4baa-ac44-2ea7e6cc4f91)
