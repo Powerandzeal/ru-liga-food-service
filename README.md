@@ -62,9 +62,9 @@ Cтруктура:
 - Подтверждение передачи заказа клиенту
 <h2> Запуск бд<h2>
   Для старта предварительно нужно запустить образы RabitMq и PostgreSql
-И добавьте в свой проект:
-```
-  docker run -lt --rm --name rabbitmq -p 5672:5672
+    <br>
+ добавьте в свой проект:
+```docker run -lt --rm --name rabbitmq -p 5672:5672
 -p 15672:15672 rabbitmq:3-management
  запускает RabitMq"
 ```
