@@ -62,8 +62,9 @@ Cтруктура:
 - Подтверждение передачи заказа клиенту
   
   <h2> Схема бд<h2>
-    https://github.com/Powerandzeal/ru-liga-food-service/assets/102437425/194ec728-c92d-4f42-94ea-ab0d4573193e
+    
 
+![image](https://github.com/Powerandzeal/ru-liga-food-service/assets/102437425/be470f2c-3f61-4baa-ac44-2ea7e6cc4f91)
 
 
 
