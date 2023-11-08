@@ -1,5 +1,6 @@
 package ru.liga.services;
 
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -11,6 +12,7 @@ import ru.liga.DTO.ResponseOrderDTO;
 @Service
 @RequiredArgsConstructor
 public class QueueListener {
+
     @SneakyThrows
     @RabbitListener(queues = "QueueOrderForCourier")
     public void processMyQueue(String message) {

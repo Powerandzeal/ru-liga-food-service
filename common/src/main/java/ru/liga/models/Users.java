@@ -1,7 +1,7 @@
 package ru.liga.models;
 
 import lombok.*;
-import ru.liga.config.Role;
+import ru.liga.Enum.Role;
 
 import javax.persistence.*;
 

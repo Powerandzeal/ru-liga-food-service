@@ -2,8 +2,6 @@ package ru.liga.services;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.weaver.ast.Or;
-import org.hibernate.criterion.Order;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,7 +14,7 @@ import ru.liga.DTO.CreateCourierDTO;
 import ru.liga.DTO.UpdateCourierDTO;
 import ru.liga.Enum.OrderStatus;
 import ru.liga.Exceptions.ValidationException;
-import ru.liga.config.Role;
+import ru.liga.Enum.Role;
 import ru.liga.models.Courier;
 import ru.liga.models.Orders;
 import ru.liga.models.Users;

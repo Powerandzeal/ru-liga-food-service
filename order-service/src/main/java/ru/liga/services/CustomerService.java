@@ -6,7 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.liga.DTO.RegistrationCustomerDTO;
 import ru.liga.Exceptions.CustomerNotFoundException;
-import ru.liga.config.Role;
+import ru.liga.Enum.Role;
 import ru.liga.models.Customers;
 import ru.liga.models.Users;
 import ru.liga.repositoryes.CustomerRepository;

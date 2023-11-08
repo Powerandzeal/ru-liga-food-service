@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 //import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.liga.DTO.CreateCourierDTO;
 import ru.liga.DTO.NotificationOrdersForCourier;
@@ -40,6 +41,7 @@ public class DeliveryController {
     )
     @PermitAll
     @PostMapping("/create-courier")
+    @PreAuthorize("hasRole('ROLE_COURIER')")
     public ResponseEntity<Courier> createCourier(
             @RequestBody @Valid CreateCourierDTO courier
     ) {
@@ -48,42 +50,14 @@ public class DeliveryController {
         return ResponseEntity.ok(createdCourier);
     }
 
-//    /**
-//     * Получает список всех курьеров.
-//     *
-//     * @return Список всех курьеров.
-//     */
-//    @Operation(
-//            summary = "Получить всех курьеров",
-//            description = "Получает список всех курьеров."
-//    )
-//    @GetMapping("/get-all-couriers")
-//    public ResponseEntity<List<Courier>> getAllCouriers() {
-//        List<Courier> couriers = courierService.getAllCourier();
-//        return ResponseEntity.ok(couriers);
-//    }
 
-    /**
-     * Получает информацию о курьере по его идентификатору.
-     *
-     * @param courierId Идентификатор курьера.
-     * @return Информация о курьере.
-     */
-//    @Operation(
-//            summary = "Получить курьера по идентификатору",
-//            description = "Получает информацию о курьере по его идентификатору."
-//    )
-//    @GetMapping("/{courierId}")
-//    public ResponseEntity<Courier> getCourierById(@PathVariable @Valid Long courierId) {
-//
-//        return courierService.getCourierById(courierId);
-//    }
     /**
      * Получает все заказы курьера за все время .
      *
      * @param courierId        Идентификатор курьера.
      * @return возвращает заказы курьера .
      */
+    @PreAuthorize("hasRole('ROLE_COURIER')")
     @GetMapping("/getOrdersByCoureir{courierId}")
     public ResponseEntity<List<Orders>> getAllOrdersCourier(
             @PathVariable Long courierId
@@ -104,6 +78,7 @@ public class DeliveryController {
             summary = "Обновить курьера",
             description = "Обновляет информацию о курьере."
     )
+    @PreAuthorize("hasRole('ROLE_COURIER')")
     @PutMapping("/{courierId}")
     public ResponseEntity<String> updateCourier(
             @PathVariable Long courierId,
@@ -124,6 +99,7 @@ public class DeliveryController {
             summary = "Удалить курьера",
             description = "Удаляет курьера по его идентификатору."
     )
+    @PreAuthorize("hasRole('ROLE_COURIER')")
     @DeleteMapping("/{courierId}")
     public ResponseEntity<String> deleteCourier(
             @PathVariable @Valid Long courierId
