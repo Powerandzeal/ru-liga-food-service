@@ -60,7 +60,13 @@ Cтруктура:
 - Обработка заявки и отправка ее курьеру с указанием адреса доставки
   <br>
 - Подтверждение передачи заказа клиенту
-  
+<h2> Запуск бд<h2>
+  Для запуска в проекте используются RabitMq и Docker 
+  ``` docker docker run -lt --rm --name rabbitmq -p 5672:5672
+-p 15672:15672 rabbitmq:3-management
+```
+ docker docker run -lt --rm --name rabbitmq -p 5672:5672
+-p 15672:15672 rabbitmq:3-management
   <h2> Схема бд<h2>
     
 
