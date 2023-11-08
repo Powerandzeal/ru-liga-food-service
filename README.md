@@ -4,17 +4,11 @@
 Cтруктура:
 
 - Dependency Bom
-<br>
 - Common
-<br>
 - Migration
-<br>
 - Order Service
-<br>
 - Kitchen Service
-<br>
 - Delivery Service
-- <br>
 - Notification Service
 <h3>Стек технологий</h3>
 
